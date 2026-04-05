@@ -521,7 +521,7 @@ function WorkSection() {
                 </span>
               </div>
             </div>
-            <ul className="space-y-4">
+            <ul className="space-y-1">
               {work.responsibilities.map((resp, idx) => (
                 <li key={idx} className="text-slate-600 dark:text-zinc-400 flex items-start gap-3 text-base font-light leading-relaxed transition-colors duration-300">
                   <div className="mt-2 w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-zinc-700 shrink-0 transition-colors duration-300"></div>
