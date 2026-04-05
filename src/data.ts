@@ -48,35 +48,70 @@ export const education: Education[] = [
 export const researchInterests = "Generally my research interests lies in Software Systems, Cloud Computing, IoT, Machine Learning, Distributed Systems, and High Performance Computing. Previously, I worked on parallel filesystem and high performance data transfer in research and education institutions for large-scale science applications. Currently, I am doing my research on Federated Learning, privacy preserving distributed learning and IoT environment. My masters thesis was about workflow scheduling in Workflow as a Service environment and I am also interested in topics such as stream processing and function scheduling in server-less computing environment as well.";
 
 export const skills: SkillGroup[] = [
+  // {
+  //   title: "Languages",
+  //   icon: "code",
+  //   skills: "Python, JAVA, C++, MATLAB. Familiar with HTML, CSS, Javascript, VHDL, Verilog, Assembly, Erlang, QT Quick, QML."
+  // },
+  // {
+  //   title: "Database",
+  //   icon: "database",
+  //   skills: "PostgreSQL, SQL Alchemy, MongoDB, Mongoengine, Pymongo, MySQL, SQLite."
+  // },
+  // {
+  //   title: "AI/ML & Frameworks",
+  //   icon: "layers",
+  //   skills: "Flask, NumPy, Pandas, OpenCV, Keras, TensorFlow, JQuery, bootstrap, angular1, SASS, React.js."
+  // },
+  // {
+  //   title: "DevOps & Tools",
+  //   icon: "settings",
+  //   skills: "OpenStack, Ceph storage cluster, Lustre File system, Git, Docker, Prometheus, ELK Stack, Kubernetese, Pulumi, Helm, Kaniko, AWS, Google Cloud, GitHub Actions, GitLab CI, MLOps.."
+  // },
+  // {
+  //   title: "Simulation Softwares",
+  //   icon: "monitor",
+  //   skills: "CloudSim, CPN tools, PIPE (petri net modeling), Packet Tracer, Xilinx, Circuit maker2000."
+  // },
+  // {
+  //   title: "Operating Systems",
+  //   icon: "server",
+  //   skills: "Windows, Linux (Ubuntu, CentOS)"
+  // }
   {
-    title: "Languages",
-    icon: "code",
-    skills: "Expert in Python, JAVA, C++, MATLAB. Familiar with HTML, CSS, Javascript, VHDL, Verilog, Assembly, Erlang, QT Quick, QML."
+    "title": "Programming Languages",
+    "icon": "code",
+    "skills": "Python, Java, C++, Bash, MATLAB; Familiar with JavaScript, HTML/CSS, VHDL, Verilog, Assembly."
   },
   {
-    title: "Frameworks",
-    icon: "layers",
-    skills: "Flask, NumPy, Pandas, OpenCV, Keras, TensorFlow, JQuery, bootstrap, angular1, SASS, React.js."
+    "title": "Databases",
+    "icon": "database",
+    "skills": "PostgreSQL, MySQL, SQLite, MongoDB, MongoEngine, SQLAlchemy."
   },
   {
-    title: "DevOps & Tools",
-    icon: "settings",
-    skills: "OpenStack, Ceph storage cluster, Lustre File system, Git, Docker, Prometheus, ELK Stack."
+    "title": "AI/ML & Data Systems",
+    "icon": "layers",
+    "skills": "Machine Learning, Deep Learning, Federated Learning, Distributed ML, Privacy-Preserving ML, Anomaly Detection, Transformers, Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), AI Agents, Multi-Agent Systems, Feature Engineering, Model Evaluation, PyTorch, TensorFlow, Keras, Scikit-learn, NumPy, Pandas, OpenCV, PySpark, ETL & Data Pipelines."
   },
   {
-    title: "Database",
-    icon: "database",
-    skills: "PostgreSQL, SQL Alchemy, MongoDB, Mongoengine, Pymongo, MySQL, SQLite."
+    "title": "Cloud, DevOps & MLOps",
+    "icon": "settings",
+    "skills": "Docker, Kubernetes, Helm, Pulumi, Kaniko, Git, GitHub Actions, GitLab CI/CD, Prometheus, Grafana, ELK Stack, RabbitMQ, OpenStack, Ceph, Lustre, AWS, Google Cloud Platform (GCP), MLOps, System Design."
   },
   {
-    title: "Simulation Softwares",
-    icon: "monitor",
-    skills: "CloudSim, CPN tools, PIPE (petri net modeling), Packet Tracer, Xilinx, Circuit maker2000."
+    "title": "Software & Web Frameworks",
+    "icon": "layout",
+    "skills": "Flask, React.js, Angular, Bootstrap, jQuery, SASS."
   },
   {
-    title: "Operating Systems",
-    icon: "server",
-    skills: "Windows, Linux (Ubuntu, CentOS)"
+    "title": "Simulation & Modeling",
+    "icon": "monitor",
+    "skills": "CloudSim, Petri Nets (CPN Tools, PIPE), Packet Tracer, Xilinx."
+  },
+  {
+    "title": "Operating Systems",
+    "icon": "server",
+    "skills": "Linux (Ubuntu, CentOS), Unix, Windows."
   }
 ];
 
