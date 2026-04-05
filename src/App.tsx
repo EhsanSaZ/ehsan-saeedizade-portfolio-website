@@ -80,9 +80,10 @@ export default function App() {
     { id: 'awards', label: 'Awards & Services', icon: Trophy },
   ];
 
-  // Close mobile menu when tab changes
+  // Close mobile menu and scroll to top when tab changes
   useEffect(() => {
     setIsMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activeTab]);
 
   return (
@@ -138,7 +139,7 @@ export default function App() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden fixed inset-0 z-[90] bg-white dark:bg-black pt-20 px-6 pb-6 flex flex-col overflow-y-auto transition-colors duration-300"
+            className="lg:hidden fixed inset-0 z-[90] bg-white/65 dark:bg-black/75 backdrop-blur-sm pt-20 px-6 pb-6 flex flex-col overflow-y-auto transition-colors duration-300 pointer-events-auto"
           >
             <nav className="flex flex-col gap-4 mb-8">
               {tabs.map((tab) => (
