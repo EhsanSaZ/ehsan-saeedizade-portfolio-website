@@ -24,7 +24,7 @@ export const certificates: CertificateCategory[] = [
       },
       {
       title: "Machine Learning with Apache Spark",
-      institution: "Coursera (IBM) — Course on distributed machine learning with Spark",
+      institution: "Coursera (IBM)",
       date: "Apr 2026",
       url: "https://www.coursera.org/account/accomplishments/certificate/UOAOUI6IQ987"
       },
