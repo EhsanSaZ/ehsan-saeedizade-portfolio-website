@@ -1,6 +1,10 @@
 {
-	"name": "React & Vite App",
+	"name": "Personal Website Dev Container",
 	"image": "mcr.microsoft.com/devcontainers/typescript-node:22",
+    "hostRequirements": {
+        "cpus": 1,
+        "memory": "1gb"
+    },
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {}
 	},
