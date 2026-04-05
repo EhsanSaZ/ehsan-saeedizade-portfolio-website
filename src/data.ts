@@ -395,18 +395,23 @@ export const certificates: CertificateCategory[] = [
 ];
 
 export const awards: Award[] = [
-  { description: "Was awarded Third Place for poster presentation at the UNR 4th annual Cybersecurity Conference - October 2023." },
-  { description: "Was Offered a position for direct master’s degree in Computer Engineering at Iran University Science and Technology - Fall 2018." },
-  { description: "National Game Analytic Dashboard Design Tournament, Second place, Iran - Fall 2017." },
-  { description: "Ranked Third among B.Sc. students of Computer Engineering major, Iran University Science and Technology - Fall 2015." }
+
+  { description: "Won People's Choice Award at Makerthon 2025, University of Nevada, Reno." },
+  { description: "Awarded GSA Outstanding Graduate Student Scholarship, University of Nevada, Reno (2025)." },
+  { description: "Awarded 3rd Place for poster presentation at the UNR 4th Annual Cybersecurity Conference (2023)." },
+  { description: "Offered a direct Master's position in Computer Engineering at Iran University of Science and Technology (Fall 2018)." },
+  { description: "Achieved 2nd place in National Game Analytic Dashboard Design Tournament, Iran (2017)." },
+  { description: "Ranked 3rd among B.Sc. Computer Engineering students at Iran University of Science and Technology (2015)." }
 ];
 
 export const services: Service[] = [
-  { title: "Conference Reviewer", description: "CCNC 2024, CCGRID 2023, IEEE CLOUD 2023." },
-  { title: "Journal Reviewer", description: "The Journal of Supercomputing, Journal of Grid Computing, Cluster Computing, Internet of Things and Cloud Computing, Imaging Science Journal." },
-  { title: "25th International Computer Conference (CSICC-2020)", description: "Executive member (Volunteer) - 2020." },
-  { title: "IUST Cloud Computing Center (CCC)", description: "Executive member (Volunteer) - 2018-2020." },
-  { title: "Natural Language Processing Laboratory", description: "Tester - 2017." },
-  { title: "PyCon, Iran University Science and Technology", description: "Executive member - 2016." },
-  { title: "ACM Contest, Iran University Science and Technology", description: "Executive member - 2015." }
+  { title: "Reviewer", description: "Nevada Undergraduate Research Award (NURA), 2024-2026." },
+  { title: "Technical Judge", description: "Nevada SkillsUSA (NVSkills) Computer Programming Competition, 2026." },{ title: "Conference Reviewer", description: "ICECET 2025, CCNC 2024, CCGRID 2023, IEEE CLOUD 2023." },
+  { title: "Journal Reviewer", description: "ACM Computing Surveys, IEEE Transactions on Parallel and Distributed Systems, IEEE Access, Journal of Supercomputing, Journal of Computing, Journal of Grid Computing, Cluster Computing, Internet of Things and Cloud Computing, Discover Computing, Imaging Science Journal." },
+  { title: "Technical Program Committee (TPC) Member", description: "CSAE 2025, ICACTE 2025." },
+  { title: "Executive Member", description: "25th International Computer Conference (CSICC 2020)." },
+  { title: "Executive Member", description: "IUST Cloud Computing Center (2018-2021)." },
+  { title: "Tester", description: "Natural Language Processing Laboratory (2017)." },
+  { title: "Executive Member", description: "PyCon, Iran University of Science and Technology (2016)." },
+  { title: "Executive Member", description: "ACM Contest, Iran University of Science and Technology (2015)." }
 ];
