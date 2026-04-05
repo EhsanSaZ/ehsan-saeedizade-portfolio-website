@@ -138,9 +138,9 @@ export default function App() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden fixed inset-0 z-[90] bg-white dark:bg-black pt-20 px-6 transition-colors duration-300"
+            className="lg:hidden fixed inset-0 z-[90] bg-white dark:bg-black pt-20 px-6 pb-6 flex flex-col overflow-y-auto transition-colors duration-300"
           >
-            <nav className="flex flex-col gap-4">
+            <nav className="flex flex-col gap-4 mb-8">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -156,6 +156,15 @@ export default function App() {
                 </button>
               ))}
             </nav>
+            <div className="mt-auto pt-8 border-t border-slate-200 dark:border-zinc-800/50 transition-colors duration-300 w-full mb-4">
+              <div className="flex justify-center gap-4">
+                <SidebarSocialLink href={personalInfo.linkedin} icon={FaLinkedin} />
+                <SidebarSocialLink href={personalInfo.github} icon={FaGithub} />
+                <SidebarSocialLink href={personalInfo.scholar} icon={FaGoogleScholar} />
+                <SidebarSocialLink href={personalInfo.researchgate} icon={FaResearchgate} />
+                <SidebarSocialLink href={`mailto:${personalInfo.email}`} icon={FaEnvelope} />
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
