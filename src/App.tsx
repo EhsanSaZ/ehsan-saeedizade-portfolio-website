@@ -659,7 +659,7 @@ function CertificatesSection() {
 
   return (
     <div>
-      <SectionHeader title="Certificates" />
+      <SectionHeader title="Certificates & Courses" />
       <div className="space-y-4">
         {certificates.map((category, index) => {
           const isOpen = openCategoryIndex === index;
