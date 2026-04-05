@@ -5,7 +5,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 
 import { 
   User, 
@@ -52,7 +52,7 @@ import {
   awards, 
   services 
 } from './data';
-import { FaGoogleScholar } from 'react-icons/fa6';
+import { FaGoogleScholar, FaResearchgate } from 'react-icons/fa6';
 
 type TabType = 'about' | 'skills' | 'work' | 'teaching' | 'publications' | 'certificates' | 'awards';
 
@@ -225,8 +225,8 @@ export default function App() {
               <SidebarSocialLink href={personalInfo.linkedin} icon={FaLinkedin} />
               <SidebarSocialLink href={personalInfo.github} icon={FaGithub} />
               <SidebarSocialLink href={personalInfo.scholar} icon={FaGoogleScholar} />
-              <SidebarSocialLink href={personalInfo.researchgate} icon={BookOpen} />
-              <SidebarSocialLink href={`mailto:${personalInfo.email}`} icon={Mail} />
+              <SidebarSocialLink href={personalInfo.researchgate} icon={FaResearchgate} />
+              <SidebarSocialLink href={`mailto:${personalInfo.email}`} icon={FaEnvelope} />
             </div>
           </div>
         </aside>
