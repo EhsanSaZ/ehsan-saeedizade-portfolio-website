@@ -5,6 +5,8 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+
 import { 
   User, 
   Users,
@@ -50,6 +52,7 @@ import {
   awards, 
   services 
 } from './data';
+import { FaGoogleScholar } from 'react-icons/fa6';
 
 type TabType = 'about' | 'skills' | 'work' | 'teaching' | 'publications' | 'certificates' | 'awards';
 
@@ -219,9 +222,9 @@ export default function App() {
 
           <div className="mt-auto pt-8 border-t border-slate-200 dark:border-zinc-800/50 transition-colors duration-300">
             <div className="flex gap-3">
-              <SidebarSocialLink href={personalInfo.linkedin} icon={Linkedin} />
-              <SidebarSocialLink href={personalInfo.github} icon={Github} />
-              <SidebarSocialLink href={personalInfo.scholar} icon={Globe} />
+              <SidebarSocialLink href={personalInfo.linkedin} icon={FaLinkedin} />
+              <SidebarSocialLink href={personalInfo.github} icon={FaGithub} />
+              <SidebarSocialLink href={personalInfo.scholar} icon={FaGoogleScholar} />
               <SidebarSocialLink href={personalInfo.researchgate} icon={BookOpen} />
               <SidebarSocialLink href={`mailto:${personalInfo.email}`} icon={Mail} />
             </div>
