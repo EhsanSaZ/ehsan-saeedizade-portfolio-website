@@ -407,7 +407,7 @@ function AboutSection() {
                 "Large Language Models (LLMs)",
                 "MLOps and Scalable ML Systems"
               ].map((interest, idx) => (
-                <span key={idx} className="px-3 py-1.5 bg-slate-50 border border-slate-200 text-slate-700 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 rounded-lg text-xs font-medium transition-colors duration-300">
+                <span key={idx} className="px-3 py-1.5 bg-slate-100 border border-slate-200 text-slate-700 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 rounded-lg text-xs font-medium transition-colors duration-300">
                   {interest}
                 </span>
               ))}
@@ -444,7 +444,7 @@ function SkillsSection() {
             className="bg-white dark:bg-zinc-900/40 p-8 rounded-[2rem] border border-slate-200 dark:border-zinc-800/50 hover:border-accent-200 dark:hover:border-accent-500/20 hover:shadow-md transition-all group"
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-slate-200/55 text-accent-600 dark:bg-zinc-800 dark:text-accent-500 rounded-2xl flex items-center justify-center dark:group-hover:bg-accent-500 dark:group-hover:text-white transition-all duration-500">
+              <div className="w-12 h-12 bg-slate-200/60 text-accent-600 dark:bg-zinc-800 dark:text-accent-500 rounded-2xl flex items-center justify-center dark:group-hover:bg-accent-500 dark:group-hover:text-white transition-all duration-500">
                 <SkillIcon name={skillGroup.icon} />
               </div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 transition-colors duration-300">{skillGroup.title}</h3>
@@ -453,7 +453,7 @@ function SkillsSection() {
               {parseSkills(skillGroup.skills).map((skill, idx) => (
                 <span 
                   key={idx} 
-                  className="px-2.5 py-0.5 bg-slate-200/55 text-slate-700 dark:bg-zinc-800/80 dark:text-zinc-300 rounded-md text-sm font-medium border border-transparent hover:border-slate-300 dark:hover:border-zinc-600 transition-colors duration-300"
+                  className="px-2.5 py-0.5 bg-slate-200/60 text-slate-700 dark:bg-zinc-800/80 dark:text-zinc-300 rounded-md text-sm font-medium border border-transparent hover:border-slate-300 dark:hover:border-zinc-600 transition-colors duration-300"
                 >
                   {skill}
                 </span>
@@ -570,7 +570,7 @@ function PublicationsSection() {
             <div className="flex flex-wrap justify-between items-start gap-4 mb-3">
               <div className="flex items-center gap-3">
                 {pub.type && (
-                  <span className="px-3 py-1 text-xs font-medium bg-slate-100 text-slate-700 dark:bg-zinc-800 dark:text-zinc-300 rounded-full border border-slate-200 dark:border-zinc-700">
+                  <span className="px-3 py-1 text-xs font-medium bg-slate-200/60 text-slate-700 dark:bg-zinc-800 dark:text-zinc-300 rounded-full border border-slate-200 dark:border-zinc-700">
                     {pub.type}
                   </span>
                 )}
@@ -621,7 +621,7 @@ function PublicationsSection() {
             {pub.tags && pub.tags.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {pub.tags.map((tag, idx) => (
-                  <span key={idx} className="px-2.5 py-1 bg-slate-100 text-slate-600 dark:bg-zinc-800/80 dark:text-zinc-400 rounded-md text-xs font-medium">
+                  <span key={idx} className="px-2.5 py-1 bg-slate-200/60 text-slate-600 dark:bg-zinc-800/80 dark:text-zinc-400 rounded-md text-xs font-medium">
                     {tag}
                   </span>
                 ))}
