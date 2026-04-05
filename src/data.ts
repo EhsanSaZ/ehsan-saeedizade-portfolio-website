@@ -1,5 +1,5 @@
 import { Education, SkillGroup, WorkExperience, TeachingExperience, Publication, Certificate, CertificateCategory, Award, Service } from './types';
-import logo from './images/E.png';
+import photo from './images/photo_main.jpg';
 
 export const personalInfo = {
   name: "Ehsan Saeedizade",
@@ -11,7 +11,7 @@ export const personalInfo = {
   scholar: "https://scholar.google.com/citations?user=RKRvkz8AAAAJ&hl=en",
   researchgate: "https://www.researchgate.net/profile/Ehsan-Saeedizade",
   github: "https://github.com/EhsanSaZ",
-  photo: logo,
+  photo: photo,
 };
 
 export const education: Education[] = [
