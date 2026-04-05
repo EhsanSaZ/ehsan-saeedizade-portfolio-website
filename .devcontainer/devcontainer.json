@@ -12,6 +12,9 @@
 	"postCreateCommand": "npm install",
 	"customizations": {
 		"vscode": {
+			"settings": {
+				"workbench.colorTheme": "Visual Studio Dark"
+			},
 			"extensions": [
 				"dbaeumer.vscode-eslint",
 				"esbenp.prettier-vscode",
