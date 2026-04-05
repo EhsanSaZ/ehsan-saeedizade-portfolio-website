@@ -222,6 +222,8 @@ export default function App() {
               <SidebarSocialLink href={personalInfo.linkedin} icon={Linkedin} />
               <SidebarSocialLink href={personalInfo.github} icon={Github} />
               <SidebarSocialLink href={personalInfo.scholar} icon={Globe} />
+              <SidebarSocialLink href={personalInfo.researchgate} icon={BookOpen} />
+              <SidebarSocialLink href={`mailto:${personalInfo.email}`} icon={Mail} />
             </div>
           </div>
         </aside>
