@@ -37,7 +37,7 @@ jobs:
 
       # 4. Build the project
       - name: Build Project
-        run: npx vite build --outDir output
+        run: npm run build
 
       # 5. Copy the build output to your DigitalOcean server via SCP
       - name: Copy files via SSH
@@ -47,6 +47,6 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          source: "output/*"
+          source: "dist/*"
           target: "/var/www/html"
           strip_components: 1
