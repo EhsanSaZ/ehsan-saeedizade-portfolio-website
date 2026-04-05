@@ -252,10 +252,10 @@ export default function App() {
           <footer className="px-6 lg:px-12 py-12 border-t border-slate-200 dark:border-zinc-800/50 mt-12 transition-colors duration-300">
             <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-slate-400 dark:text-zinc-600 text-xs uppercase tracking-widest font-semibold">
-                Last Update May-2024
+                Last Update April-2026
               </p>
               <p className="text-slate-500 dark:text-zinc-500 text-sm">
-                © {new Date().getFullYear()} {personalInfo.name}. All Rights Reserved.
+                © 2022 - {new Date().getFullYear()} {personalInfo.name}. All Rights Reserved.
               </p>
             </div>
           </footer>
