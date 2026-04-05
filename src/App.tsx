@@ -156,15 +156,6 @@ export default function App() {
                 </button>
               ))}
             </nav>
-            <div className="mt-auto pt-8 border-t border-slate-200 dark:border-zinc-800/50 transition-colors duration-300 w-full mb-4">
-              <div className="flex justify-center gap-4">
-                <SidebarSocialLink href={personalInfo.linkedin} icon={FaLinkedin} />
-                <SidebarSocialLink href={personalInfo.github} icon={FaGithub} />
-                <SidebarSocialLink href={personalInfo.scholar} icon={FaGoogleScholar} />
-                <SidebarSocialLink href={personalInfo.researchgate} icon={FaResearchgate} />
-                <SidebarSocialLink href={`mailto:${personalInfo.email}`} icon={FaEnvelope} />
-              </div>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -264,6 +255,15 @@ export default function App() {
           </div>
 
           <footer className="px-6 lg:px-12 py-12 border-t border-slate-200 dark:border-zinc-800/50 mt-12 transition-colors duration-300">
+            {/* Mobile Social Links */}
+            <div className="lg:hidden mb-8 flex justify-center gap-4">
+              <SidebarSocialLink href={personalInfo.linkedin} icon={FaLinkedin} />
+              <SidebarSocialLink href={personalInfo.github} icon={FaGithub} />
+              <SidebarSocialLink href={personalInfo.scholar} icon={FaGoogleScholar} />
+              <SidebarSocialLink href={personalInfo.researchgate} icon={FaResearchgate} />
+              <SidebarSocialLink href={`mailto:${personalInfo.email}`} icon={FaEnvelope} />
+            </div>
+
             <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-slate-400 dark:text-zinc-600 text-xs uppercase tracking-widest font-semibold">
                 Last Update April-2026
