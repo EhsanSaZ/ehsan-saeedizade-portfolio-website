@@ -295,10 +295,10 @@ function AboutSection() {
     <div className="space-y-8">
       <div className="mb-12">
         <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 dark:text-zinc-100 tracking-tight mb-4 transition-colors duration-300">
-          About Me
+          Who am I?
         </h1>
         <p className="text-xl text-slate-600 dark:text-zinc-400 leading-relaxed max-w-3xl font-light transition-colors duration-300">
-          A passionate researcher and educator dedicated to advancing artificial intelligence and inspiring the next generation of innovators.
+          A researcher and engineer focused on advancing AI/ML-driven solutions, distributed infrastructures, and scalable, privacy-preserving intelligent applications.
         </p>
       </div>
 
@@ -315,13 +315,13 @@ function AboutSection() {
             </h3>
             <div className="space-y-4 text-slate-600 dark:text-zinc-400 leading-relaxed text-justify font-light transition-colors duration-300">
               <p>
-                I am Ehsan Saeedizade, a Graduate Teaching Assistant with a deep passion for artificial intelligence and its transformative potential. My research journey has taken me through the exciting landscapes of Large Language Models, Retrieval Augmented Generation, and intelligent agent systems.
+                I am a Ph.D. candidate and Graduate Research and Teaching Assistant, specializing in AI/ML-driven software systems and distributed infrastructures. My work focuses on federated learning, anomaly detection, and privacy-preserving machine learning across edge, cloud, and high-performance environments, with an emphasis on building scalable, production-grade systems.
               </p>
               <p>
-                Currently based in Reno, Nevada, I combine my research pursuits with a commitment to education, helping students navigate the complexities of computer science and AI. My work explores how we can create more intelligent, responsive, and human-centered AI systems.
+                I have hands-on experience developing machine learning pipelines, large-scale monitoring frameworks, and cloud-native systems using modern DevOps and MLOps practices. My recent work extends to large language models, AI agents, and system-level design of intelligent, data-driven applications.
               </p>
               <p>
-                Beyond my technical work, I am fascinated by facial expression recognition and human-computer interaction, believing that the future of AI lies in systems that can truly understand and respond to human needs.
+                With a strong background in software engineering, cloud computing, and system design, I aim to bridge the gap between advanced machine learning research and real-world, scalable system deployment.
               </p>
             </div>
           </div>
@@ -348,9 +348,9 @@ function AboutSection() {
                         <MapPin size={14} />
                         {edu.location}
                       </div>
-                      {index === 0 && (
+                      {edu.description && (
                         <p className="text-slate-600 dark:text-zinc-400 text-sm mt-3 font-light transition-colors duration-300">
-                          Focusing on Large Language Models, Retrieval Augmented Generation, and intelligent agent systems.
+                          {edu.description}
                         </p>
                       )}
                     </div>
@@ -377,9 +377,9 @@ function AboutSection() {
               Current Role
             </h3>
             <div>
-              <h4 className="font-bold text-slate-900 dark:text-zinc-100 mb-2 transition-colors duration-300">Graduate Teaching Assistant</h4>
+              <h4 className="font-bold text-slate-900 dark:text-zinc-100 mb-2 transition-colors duration-300">Graduate Research and Teaching Assistant</h4>
               <p className="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed font-light transition-colors duration-300">
-                Combining research excellence with a passion for education, mentoring students in computer science and AI.
+                Driving research in AI/ML systems while mentoring the next generation of engineers.
               </p>
             </div>
           </div>
@@ -394,12 +394,18 @@ function AboutSection() {
             </h3>
             <div className="flex flex-wrap gap-2">
               {[
+                "Distributed Systems",
+                "Cloud Computing",
+                "Federated Learning",
+                "Machine Learning",
+                "Workflow Scheduling",
+                "Resource Management",
+                "Anomaly Detection",
+                "AI/ML for Systems",
+                "Software Systems",
+                "High-Performance Computing (HPC)",
                 "Large Language Models (LLMs)",
-                "Retrieval Augmented Generation (RAG)",
-                "Intelligent Agents",
-                "Facial Expression Recognition",
-                "Natural Language Processing",
-                "Human-Computer Interaction"
+                "MLOps and Scalable ML Systems"
               ].map((interest, idx) => (
                 <span key={idx} className="px-3 py-1.5 bg-slate-50 border border-slate-200 text-slate-700 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 rounded-lg text-xs font-medium transition-colors duration-300">
                   {interest}

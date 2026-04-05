@@ -5,6 +5,7 @@ export interface Education {
   institution: string;
   location: string;
   period: string;
+  description?: string;
 }
 
 export interface SkillGroup {

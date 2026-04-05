@@ -16,22 +16,32 @@ export const personalInfo = {
 
 export const education: Education[] = [
   {
-    degree: "Ph.D. in Computer Science",
-    institution: "University of Nevada-Reno",
+    degree: "Ph.D. in Computer Science and Engineering",
+    institution: "University of Nevada, Reno",
     location: "USA",
-    period: "2021-up to now"
+    period: "2021-up to now",
+    description: "Researching in federated learning, anomaly detection, and distributed systems, focusing on privacy-preserving AI/ML in edge/cloud environments and scalable monitoring of large-scale infrastructure."
   },
   {
-    degree: "M.Sc in Computer Science",
-    institution: "Iran University of Science and Technology",
-    location: "Tehran",
-    period: "2018-2021"
+    degree: "M.Sc in Computer Science and Engineering",
+    institution: "University of Nevada, Reno",
+    location: "USA",
+    period: "2021-2024",
+    description: "Researched applied machine learning and systems, including anomaly detection, I/O performance prediction in HPC systems, and distributed monitoring frameworks."
   },
   {
-    degree: "B.Sc in Computer Science",
+    degree: "M.Sc in Computer Science and Engineering",
     institution: "Iran University of Science and Technology",
     location: "Tehran",
-    period: "2014-2018"
+    period: "2018-2021",
+    description: "Researched cloud computing and resource scheduling, developing optimization and reinforcement learning-based algorithms for distributed workflow management."
+  },
+  {
+    degree: "B.Sc in Computer Science and Engineering",
+    institution: "Iran University of Science and Technology",
+    location: "Tehran",
+    period: "2014-2018",
+    description: "Researched software engineering, algorithms, and machine learning through projects in AI, computer vision, and web-based systems."
   }
 ];
 
