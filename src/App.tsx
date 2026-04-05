@@ -43,7 +43,7 @@ import {
 import { 
   personalInfo, 
   education, 
-  researchInterests, 
+  // researchInterests, 
   skills, 
   workExperience, 
   teachingExperience, 

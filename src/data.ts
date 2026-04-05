@@ -45,39 +45,9 @@ export const education: Education[] = [
   }
 ];
 
-export const researchInterests = "Generally my research interests lies in Software Systems, Cloud Computing, IoT, Machine Learning, Distributed Systems, and High Performance Computing. Previously, I worked on parallel filesystem and high performance data transfer in research and education institutions for large-scale science applications. Currently, I am doing my research on Federated Learning, privacy preserving distributed learning and IoT environment. My masters thesis was about workflow scheduling in Workflow as a Service environment and I am also interested in topics such as stream processing and function scheduling in server-less computing environment as well.";
+// export const researchInterests = "Generally my research interests lies in Software Systems, Cloud Computing, IoT, Machine Learning, Distributed Systems, and High Performance Computing. Previously, I worked on parallel filesystem and high performance data transfer in research and education institutions for large-scale science applications. Currently, I am doing my research on Federated Learning, privacy preserving distributed learning and IoT environment. My masters thesis was about workflow scheduling in Workflow as a Service environment and I am also interested in topics such as stream processing and function scheduling in server-less computing environment as well.";
 
 export const skills: SkillGroup[] = [
-  // {
-  //   title: "Languages",
-  //   icon: "code",
-  //   skills: "Python, JAVA, C++, MATLAB. Familiar with HTML, CSS, Javascript, VHDL, Verilog, Assembly, Erlang, QT Quick, QML."
-  // },
-  // {
-  //   title: "Database",
-  //   icon: "database",
-  //   skills: "PostgreSQL, SQL Alchemy, MongoDB, Mongoengine, Pymongo, MySQL, SQLite."
-  // },
-  // {
-  //   title: "AI/ML & Frameworks",
-  //   icon: "layers",
-  //   skills: "Flask, NumPy, Pandas, OpenCV, Keras, TensorFlow, JQuery, bootstrap, angular1, SASS, React.js."
-  // },
-  // {
-  //   title: "DevOps & Tools",
-  //   icon: "settings",
-  //   skills: "OpenStack, Ceph storage cluster, Lustre File system, Git, Docker, Prometheus, ELK Stack, Kubernetese, Pulumi, Helm, Kaniko, AWS, Google Cloud, GitHub Actions, GitLab CI, MLOps.."
-  // },
-  // {
-  //   title: "Simulation Softwares",
-  //   icon: "monitor",
-  //   skills: "CloudSim, CPN tools, PIPE (petri net modeling), Packet Tracer, Xilinx, Circuit maker2000."
-  // },
-  // {
-  //   title: "Operating Systems",
-  //   icon: "server",
-  //   skills: "Windows, Linux (Ubuntu, CentOS)"
-  // }
   {
     "title": "Programming Languages",
     "icon": "code",
@@ -232,79 +202,112 @@ export const teachingExperience: TeachingExperience[] = [
 
 export const publications: Publication[] = [
   {
-    authors: "E. Saeedizade, M. Ashtiani",
-    title: "Scientific workflow scheduling algorithms in cloud environments: a comprehensive taxonomy, survey, and future directions",
+    authors: "Saeedizade, E., Lyon, J., and Sengupta, S.",
+    title: "Benchmarking Machine Learning Models for IoT Malware Detection under Data Scarcity and Drift",
+    journal: "2026 IEEE 23rd Consumer Communications & Networking Conference (CCNC)",
+    year: "2026",
+    doi: "10.1109/CCNC65079.2026.11366512",
+    doiUrl: "https://doi.org/10.1109/CCNC65079.2026.11366512",
+    type: "Conference Paper",
+    description: "This paper evaluates lightweight supervised machine learning models for IoT malware detection and classification, analyzing performance, data efficiency, and temporal robustness in dynamic threat environments.",
+    tags: ["IoT Security", "Malware Detection", "AI/ML", "Random Forest", "LightGBM", "Logistic Regression", "MLP", "Scikit-learn"]
+  },
+  {
+    authors: "Taheri, R., Saeedizade, E., and Sengupta, S.",
+    title: "Lightweight IoT Device Fingerprinting Approach using Locality-Sensitive Hashing",
+    journal: "2026 IEEE 23rd Consumer Communications & Networking Conference (CCNC)",
+    year: "2026",
+    doi: "10.1109/CCNC65079.2026.11366543",
+    doiUrl: "https://doi.org/10.1109/CCNC65079.2026.11366543",
+    type: "Conference Paper",
+    description: "This paper proposes a lightweight IoT device fingerprinting approach using locality-sensitive hashing (LSH) to enable efficient and scalable device identification in resource-constrained environments.",
+    tags: ["IoT Security", "Device Fingerprinting", "Locality-Sensitive Hashing (LSH)", "Lightweight Systems", "Network Security", "Scalable Systems"]
+  },
+  {
+    authors: "Saeedizade, E., Sengupta, S., and Thom, J.",
+    title: "Federated Learning-Based Anomaly Detection Approach for High-Performance Research Networks",
+    journal: "MILCOM 2025 - IEEE Military Communications Conference",
+    year: "2025",
+    doi: "10.1109/MILCOM64451.2025.11310198",
+    doiUrl: "https://doi.org/10.1109/MILCOM64451.2025.11310198",
+    type: "Conference Paper",
+    description: "This paper proposes a federated learning-based anomaly detection framework for high-performance research networks, leveraging feature-based transfer learning to improve generalization, scalability, and privacy in heterogeneous and data-sparse environments.",
+    tags: ["Federated Learning", "Anomaly Detection", "AI/ML", "High-Performance Research Networks (HPRNs)", "Distributed Machine Learning", "Transfer Learning", "Privacy-Preserving ML", "PyTorch", "Scikit-learn", "Flower", "ELK Stack", "Monitoring Systems", "TensorBoard"]
+  },
+  {
+    authors: "Saeedizade, E., and Ashtiani, M.",
+    title: "Scientific Workflow Scheduling Algorithms in Cloud Environments: A Comprehensive Taxonomy, Survey, and Future Directions",
     journal: "Journal of Scheduling",
-    year: "2024",
-    doi: "10.1007/s10951-024-00820-1",
+    year: "2025",
+    doi: "doi.org/10.1007/s10951-024-00820-1",
     doiUrl: "https://doi.org/10.1007/s10951-024-00820-1",
     type: "Journal Article",
-    description: "This paper presents a comprehensive taxonomy and survey of scientific workflow scheduling algorithms in cloud environments, highlighting future research directions.",
-    tags: ["Cloud Computing", "Workflow Scheduling", "Survey"]
+    description: "This paper presents a comprehensive taxonomy and survey of scientific workflow scheduling algorithms in cloud environments, analyzing models, objectives, evaluation methods, and emerging paradigms such as serverless computing and workflow-as-a-service.",
+    tags: ["Cloud Computing", "Workflow Scheduling", "Distributed Systems", "Scientific Workflows", "Serverless Computing", "Survey", "Taxonomy"]
   },
   {
-    authors: "E. Saeedizade, B. Zhang, E. Arslan",
-    title: "Demystifying the Performance of Data Transfers in High-Performance Research Networks",
-    journal: "IEEE eScience 2023",
-    year: "2023",
-    doi: "10.1109/e-Science58273.2023.10254940",
-    doiUrl: "https://doi.org/10.1109/e-Science58273.2023.10254940",
-    type: "Conference Paper",
-    description: "An in-depth analysis of data transfer performance across high-performance research networks, identifying bottlenecks and optimization strategies.",
-    tags: ["High-Performance Computing", "Data Transfer", "Networking"]
-  },
-  {
-    authors: "E. Saeedizade, R. Taheri, E. Arslan",
-    title: "I/O Burst Prediction for HPC Clusters using Darshan Logs",
-    journal: "IEEE eScience 2023",
+    authors: "Saeedizade, E., Taheri, R., and Arslan, E.",
+    title: "I/O Burst Prediction for HPC Clusters Using Darshan Logs",
+    journal: "2023 IEEE 19th International Conference on e-Science (e-Science)",
     year: "2023",
     doi: "10.1109/e-Science58273.2023.10254871",
     doiUrl: "https://doi.org/10.1109/e-Science58273.2023.10254871",
     type: "Conference Paper",
-    description: "A novel approach to predicting I/O bursts in HPC clusters by analyzing Darshan logs, aiming to improve storage system efficiency.",
-    tags: ["HPC", "I/O Prediction", "Machine Learning"]
+    description: "This paper proposes machine learning models to predict system-level I/O bursts in HPC clusters using Darshan logs, enabling proactive scheduling and achieving over 90% accuracy for short-term predictions.",
+    tags: ["High-Performance Computing (HPC)", "I/O Burst Prediction", "Machine Learning", "Time-Series Prediction", "Darshan", "System Monitoring", "Job Scheduling", "Scikit-learn", "Deep Learning", "Data Analysis", "Feature Engineering", "Model Evaluation"]
   },
   {
-    authors: "F. A. Chetabi, M. Ashtiani, E. Saeedizade",
+    authors: "Saeedizade, E., Zhang, B., and Arslan, E.",
+    title: "Demystifying the Performance of Data Transfers in High-Performance Research Networks",
+    journal: "2023 IEEE 19th International Conference on e-Science (e-Science)",
+    year: "2023",
+    doi: "10.1109/e-Science58273.2023.10254940",
+    doiUrl: "https://doi.org/10.1109/e-Science58273.2023.10254940",
+    type: "Conference Paper",
+    description: "This paper presents a scalable end-to-end monitoring framework for analyzing data transfer performance in high-performance research networks, enabling automated root cause analysis of performance anomalies using heuristic methods.",
+    tags: ["High-Performance Research Networks (HPRNs)", "Distributed Systems", "Parallel File Systems", "Lustre", "Performance Analysis", "Anomaly Detection", "Data Analysis", "ELK Stack", "Scalable Systems", "Monitoring Systems", "RabbitMQ", "Transfer Learning", "TCP/IP"]
+  },
+  {
+    authors: "Chetabi, F. A., Ashtiani, M., and Saeedizade, E.",
     title: "A Package-Aware Approach for Function Scheduling in Serverless Computing Environments",
     journal: "Journal of Grid Computing",
     year: "2023",
     doi: "10.1007/s10723-023-09657-y",
     doiUrl: "https://doi.org/10.1007/s10723-023-09657-y",
     type: "Journal Article",
-    description: "Proposes a package-aware scheduling approach for serverless functions to minimize cold starts and optimize resource utilization.",
-    tags: ["Serverless", "Function Scheduling", "Cloud Computing"]
+    description: "This paper proposes a SARSA-based function scheduling algorithm for serverless computing that optimizes turnaround time and resource utilization by considering data dependencies and package-aware execution.",
+    tags: ["Serverless Computing", "Reinforcement Learning", "SARSA", "Cloud Computing", "Resource Management", "Distributed Systems"]
   },
   {
-    authors: "M. A. Haghpanah, E. Saeedizade, M. Tale Masouleh, A. Kalhor",
-    title: "Real-Time Facial Expression Recognition using Facial Landmarks and Neural Networks",
-    journal: "Proc. of the 2nd International Conference on Machine Vision and Image Processing (MVIP)",
+    authors: "Haghpanah, M. A., Saeedizade, E., Tale Masouleh, M., and Kalhor, A.",
+    title: "Real-Time Facial Expression Recognition Using Facial Landmarks and Neural Networks",
+    journal: "2022 International Conference on Machine Vision and Image Processing (MVIP)",
     year: "2022",
     doi: "10.1109/MVIP53647.2022.9738754",
     doiUrl: "https://doi.org/10.1109/MVIP53647.2022.9738754",
     type: "Conference Paper",
-    description: "A real-time system for facial expression recognition leveraging facial landmarks and neural network architectures.",
-    tags: ["Computer Vision", "Neural Networks", "Facial Recognition"]
+    description: "This paper presents a lightweight real-time facial expression recognition approach using facial landmarks and a multi-layer perceptron (MLP), achieving high accuracy through geometric and texture-based feature extraction.",
+    tags: ["Computer Vision", "Facial Expression Recognition", "Neural Networks", "MLP", "OpenCV", "Feature Extraction", "Real-Time Systems"]
   },
   {
-    authors: "E. Saeedizade and M. Ashtiani",
-    title: "DDBWS: a dynamic deadline and budget-aware workflow scheduling algorithm in workflow-as-a-service environment",
-    journal: "Journal of Super Computing",
+    authors: "Saeedizade, E., and Ashtiani, M.",
+    title: "DDBWS: A Dynamic Deadline and Budget-Aware Workflow Scheduling Algorithm in Workflow-as-a-Service Environments",
+    journal: "The Journal of Supercomputing",
     year: "2021",
     doi: "10.1007/s11227-021-03858-6",
     doiUrl: "https://doi.org/10.1007/s11227-021-03858-6",
     type: "Journal Article",
-    description: "Introduces DDBWS, an algorithm designed to schedule workflows dynamically while considering both deadline and budget constraints in WaaS environments.",
-    tags: ["Workflow Scheduling", "WaaS", "Resource Allocation"]
+    description: "This paper proposes a dynamic deadline- and budget-aware workflow scheduling algorithm for cloud-based WaaS environments, optimizing cost and resource utilization through multi-resource packing and concurrent task execution.",
+    tags: ["Cloud Computing", "Workflow Scheduling", "Workflow-as-a-Service (WaaS)", "Resource Management", "Distributed Systems", "Containerization", "Virtual Machines", "Container"]
   },
   {
-    authors: "E. Saeedizade and M. Ashtiani",
-    title: "Multi-constraint dynamic scheduling of scientific workflows in cloud with multi-resource packing",
+    authors: "Saeedizade, E., and Ashtiani, M.",
+    title: "Multi-Constraint Dynamic Scheduling of Scientific Workflows in Cloud with Multi-Resource Packing",
     journal: "International Conference on Web Research",
     year: "2021",
     type: "Conference Paper",
-    description: "Explores dynamic scheduling of scientific workflows in cloud environments using multi-resource packing techniques under multiple constraints.",
-    tags: ["Cloud Computing", "Dynamic Scheduling", "Resource Packing"]
+    description: "This paper proposes a dynamic scheduling approach for scientific workflows in cloud environments using multi-resource packing to optimize execution under multiple constraints.",
+    tags: ["Cloud Computing", "Workflow Scheduling", "Dynamic Scheduling", "Scientific Workflows", "Resource Packing", "Distributed Systems"]
   }
 ];
 
