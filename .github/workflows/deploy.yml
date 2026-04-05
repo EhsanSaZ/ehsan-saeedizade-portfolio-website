@@ -1,0 +1,52 @@
+name: Manual Deploy to DigitalOcean
+
+# 'workflow_dispatch' allows you to trigger the workflow manually from GitHub UI
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 0. Test SSH Connection
+      # This step will fail fast if the credentials or server are incorrect
+      - name: Test SSH Connection
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: echo "SSH connection tested successfully!"
+
+      # 1. Checkout the repository code from the main branch
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use your project's target Node version
+          cache: 'npm'
+
+      # 3. Install dependencies
+      - name: Install Dependencies
+        run: npm ci
+
+      # 4. Build the project
+      - name: Build Project
+        run: npm run build
+
+      # 5. Copy the build output to your DigitalOcean server via SCP
+      - name: Copy files via SSH
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          source: "output/*"
+          target: "/var/www/html"
+          strip_components: 1
