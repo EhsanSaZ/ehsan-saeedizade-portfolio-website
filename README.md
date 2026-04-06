@@ -1,97 +1,126 @@
-# Run and deploy your AI Studio app
+# Ehsan Saeedizade Portfolio Website
 
-This contains everything you need to run your app locally.
+Personal portfolio website built with React, TypeScript, and Vite. This project presents my profile, research background, skills, experience, publications, certificates, awards, and professional services in a fast, responsive single-page interface.
 
-View your app in AI Studio: https://ai.studio/apps/e93d7d9c-5222-47b0-882b-06b40830a509
+## About
 
-## Run Locally
+This website is designed to serve as a central hub for my academic and professional work.
 
-**Prerequisites:**  Node.js
+It includes:
 
+- Personal introduction and contact information
+- Skills across software engineering, cloud, and research domains
+- Work and teaching experience
+- Publications and academic activity
+- Certificates, awards, and services
+- Social links (GitHub, LinkedIn, Google Scholar, ResearchGate)
 
-1. Install dependencies:
-   `npm install`
-2. Run the app:
-   `npm run dev`
+## Tech Stack
 
-## Build and Host on Linux with Apache
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS 4
+- Motion (for animations)
+- Lucide React and React Icons
 
-To deploy your application on a Linux server using Apache, you need to build the project and copy the static files to your web server directory.
-
-### 1. Build the Application
-
-To build the project for production and guarantee the output goes to an `output` directory, run the following command:
-
-```bash
-npx vite build --outDir output
-```
-
-This will create an `output` directory in your project root containing the optimized HTML, JS, and CSS files. The structure will look something like this:
+## Project Structure
 
 ```text
-output/
-├── assets/
-│   ├── index-[hash].css
-│   └── index-[hash].js
-├── vite.svg
-└── index.html
+.
+├── src/
+│   ├── data/                # Portfolio content datasets
+│   │   ├── personalInfo.ts
+│   │   ├── education.ts
+│   │   ├── skills.ts
+│   │   ├── workExperience.ts
+│   │   ├── teachingExperience.ts
+│   │   ├── publications.ts
+│   │   ├── certificates.ts
+│   │   ├── awards.ts
+│   │   └── services.ts
+│   ├── App.tsx              # Main UI and section rendering
+│   ├── index.css            # Global styles
+│   └── main.tsx             # App entry point
+├── images/                  # Static image assets
+├── index.html
+├── package.json
+└── README.md
 ```
 
-### 2. Install Apache on Linux (Ubuntu/Debian)
+## Getting Started
 
-If you haven't installed Apache yet, run the following commands on your Linux server:
+### Prerequisites
+
+- Node.js 18+
+- npm
+
+### Installation
 
 ```bash
-sudo apt update
-sudo apt install apache2 -y
+npm install
 ```
 
-### 3. Deploy the application
-
-Copy the contents of the newly created `output` directory to your Apache web root directory (default is `/var/www/html/`).
+### Run in Development
 
 ```bash
-sudo rsync -av --delete output/ /var/www/html/
+npm run dev
 ```
-*(Note: Ensure you are copying the contents inside the folder, hence the trailing slash `output/`)*
 
-### 4. Set Correct Permissions
+The app runs at `http://localhost:3000`.
 
-You must give the Apache web server read permissions for those files:
+### Build for Production
 
 ```bash
-sudo chown -R www-data:www-data /var/www/html
-sudo chmod -R 755 /var/www/html
+npm run build
 ```
 
-### 5. Enable and Start Apache
+Build output will be generated in the `dist/` directory.
 
-Ensure Apache is running and configured to start on boot:
+### Preview Production Build
 
 ```bash
-sudo systemctl enable apache2
-sudo systemctl restart apache2
+npm run preview
 ```
 
-### 6. Address Client-Side Routing (Optional)
+### Type Check
 
-If your app uses a client-side router (like React Router), you will need to direct all requests back to `index.html`. 
-
-First, enable the rewrite module:
 ```bash
-sudo a2enmod rewrite
-sudo systemctl restart apache2
+npm run lint
 ```
 
-Then, create a `.htaccess` file inside `/var/www/html/` with the following content:
-```apache
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
-</IfModule>
-```
-Make sure `AllowOverride All` is set for your `<Directory /var/www/html>` in your Apache configuration (typically in `/etc/apache2/sites-available/000-default.conf`).
+## Customization
+
+Most portfolio content is data-driven and can be updated without changing UI components.
+
+Update these files to personalize content:
+
+- `src/data/personalInfo.ts`
+- `src/data/education.ts`
+- `src/data/skills.ts`
+- `src/data/workExperience.ts`
+- `src/data/teachingExperience.ts`
+- `src/data/publications.ts`
+- `src/data/certificates.ts`
+- `src/data/awards.ts`
+- `src/data/services.ts`
+
+To update profile images, replace or add assets under `images/` and reference them in the data files.
+
+## Deployment
+
+This is a static frontend app. You can deploy the contents of `dist/` to any static hosting provider, such as:
+
+- GitHub Pages
+- Netlify
+- Vercel
+- Cloudflare Pages
+- Apache/Nginx static hosting
+
+## Contact
+
+- Email: e24saeedi@gmail.com
+- LinkedIn: https://www.linkedin.com/in/ehsansaeedizade/
+- GitHub: https://github.com/EhsanSaZ
+- Google Scholar: https://scholar.google.com/citations?user=RKRvkz8AAAAJ&hl=en
+- ResearchGate: https://www.researchgate.net/profile/Ehsan-Saeedizade
