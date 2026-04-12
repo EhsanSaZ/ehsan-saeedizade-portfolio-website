@@ -28,6 +28,13 @@ export const teachingExperience: TeachingExperience[] = [
     role: "Graduate Teaching Assistant",
     institution: "University Of Nevada-Reno",
     responsibilities: "Grading, Mentorship, Practice sessions"
+  },  
+  {
+    course: "Programming Languages, Concepts and Implementation",
+    period: "Summer-2024",
+    role: "Graduate Teaching Assistant",
+    institution: "University Of Nevada-Reno",
+    responsibilities: "Grading, Mentorship, Practice sessions"
   },
   {
     course: "Formal Methods in SE",
