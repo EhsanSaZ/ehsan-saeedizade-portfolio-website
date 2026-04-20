@@ -29,6 +29,8 @@ It includes:
 ```text
 .
 ├── src/
+│   ├── components/          # Reusable UI components
+│   │   └── ThemeToggle.tsx  # Dark/Light mode toggle
 │   ├── data/                # Portfolio content datasets
 │   │   ├── personalInfo.ts
 │   │   ├── education.ts

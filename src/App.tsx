@@ -38,7 +38,8 @@ import {
   Moon,
   BookMarked,
   Star,
-  ChevronDown
+  ChevronDown,
+  Cloud
 } from 'lucide-react';
 import { 
   personalInfo, 
@@ -53,13 +54,17 @@ import {
   services 
 } from './data';
 import { FaGoogleScholar, FaResearchgate } from 'react-icons/fa6';
+import ThemeToggle from './components/ThemeToggle';
 
 type TabType = 'about' | 'skills' | 'work' | 'teaching' | 'publications' | 'certificates' | 'awards';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('about');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false); // Default to light mode
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const hour = new Date().getHours();
+    return hour >= 19 || hour < 7;
+  });
 
   // Handle dark mode toggle
   useEffect(() => {
@@ -106,23 +111,7 @@ export default function App() {
           <span className="text-slate-900 dark:text-zinc-100 font-bold tracking-tight">{personalInfo.name}</span>
         </div>
         <div className="flex items-center gap-2">
-          <button
-            onClick={() => setIsDarkMode(!isDarkMode)}
-            className="relative p-2 w-10 h-10 flex items-center justify-center overflow-hidden rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 transition-colors"
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={isDarkMode ? 'dark' : 'light'}
-                initial={{ y: -20, opacity: 0, rotate: -90 }}
-                animate={{ y: 0, opacity: 1, rotate: 0 }}
-                exit={{ y: 20, opacity: 0, rotate: 90 }}
-                transition={{ duration: 0.2 }}
-                className="absolute"
-              >
-                {isDarkMode ? <Sun size={20} className="text-yellow-500" /> : <Moon size={20} className="text-slate-700 dark:text-white" />}
-              </motion.div>
-            </AnimatePresence>
-          </button>
+          <ThemeToggle isDarkMode={isDarkMode} toggle={() => setIsDarkMode(!isDarkMode)} />
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="p-2 text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
@@ -179,23 +168,7 @@ export default function App() {
                 {personalInfo.title}
               </p>
             </div>
-            <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className="relative p-2 w-10 h-10 flex items-center justify-center overflow-hidden rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 transition-colors"
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={isDarkMode ? 'dark' : 'light'}
-                  initial={{ y: -20, opacity: 0, rotate: -90 }}
-                  animate={{ y: 0, opacity: 1, rotate: 0 }}
-                  exit={{ y: 20, opacity: 0, rotate: 90 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute"
-                >
-                  {isDarkMode ? <Sun size={20} className="text-yellow-500" /> : <Moon size={20} className="text-slate-700 dark:text-white" />}
-                </motion.div>
-              </AnimatePresence>
-            </button>
+            <ThemeToggle isDarkMode={isDarkMode} toggle={() => setIsDarkMode(!isDarkMode)} />
           </div>
 
           <nav className="flex-1 space-y-1">
