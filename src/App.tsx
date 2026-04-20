@@ -161,7 +161,7 @@ export default function App() {
                 className="w-32 h-32 rounded-2xl object-cover shadow-xl shadow-accent-500/20 mb-6 border-2 border-slate-200 dark:border-zinc-800"
                 referrerPolicy="no-referrer"
               />
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-zinc-100 tracking-tight leading-tight mb-2">
+              <h1 className="text-xl xl:text-2xl font-bold whitespace-nowrap text-slate-900 dark:text-zinc-100 tracking-tight leading-tight mb-2">
                 {personalInfo.name}
               </h1>
               <p className="text-sm text-slate-500 dark:text-zinc-500 font-medium leading-relaxed">
@@ -324,12 +324,13 @@ function AboutSection() {
             </h3>
             <div className="space-y-8">
               {education.map((edu, index) => (
-                <div key={index} className="relative">
+                <div key={index} className="relative pl-6">
                   {index !== education.length - 1 && (
-                    <div className="absolute left-0 top-12 bottom-[-2rem] w-px bg-slate-200 dark:bg-zinc-800"></div>
+                    <div className="absolute left-0 top-6 bottom-[-2rem] w-px bg-slate-200 dark:bg-zinc-800"></div>
                   )}
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                     <div>
+                      <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-teal-500 ring-4 ring-teal-50 dark:ring-teal-500/10"></div>
                       <h4 className="text-lg font-bold text-slate-900 dark:text-zinc-100 transition-colors duration-300">{edu.degree}</h4>
                       <div className="text-blue-600 dark:text-blue-400 font-medium mt-1">{edu.institution}</div>
                       <div className="flex items-center gap-2 text-slate-500 dark:text-zinc-500 text-sm mt-2 transition-colors duration-300">
