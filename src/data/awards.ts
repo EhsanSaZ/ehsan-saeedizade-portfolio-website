@@ -1,7 +1,7 @@
 import { Award } from '../types';
 
 export const awards: Award[] = [
-  { description: "Awarded 3rd Place for Makerthon 2026, University of Nevada, Reno" },
+  { description: "Awarded 3rd Place for Makerthon 2026, University of Nevada, Reno." },
   { description: "Won People's Choice Award at Makerthon 2025, University of Nevada, Reno." },
   { description: "Awarded GSA Outstanding Graduate Student Scholarship, University of Nevada, Reno (2025)." },
   { description: "Awarded 3rd Place for poster presentation at the UNR 4th Annual Cybersecurity Conference (2023)." },
