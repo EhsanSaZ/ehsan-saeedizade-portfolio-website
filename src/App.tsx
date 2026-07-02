@@ -430,11 +430,11 @@ function SkillsSection() {
             viewport={{ once: true }}
             transition={{ delay: index * 0.05 }}
             key={index} 
-            className="relative overflow-hidden bg-white dark:bg-zinc-900/40 p-8 rounded-[2rem] border border-slate-200 dark:border-zinc-800/50 hover:border-accent-200 dark:hover:border-accent-500/20 hover:shadow-md transition-all group"
+            className="relative overflow-hidden bg-white dark:bg-zinc-900/40 p-8 rounded-[2rem] border border-accent-200 dark:border-accent-500/20 shadow-md transition-all group"
           >
-            <div className="absolute top-0 left-0 w-1 h-full bg-accent-500/0 group-hover:bg-accent-500 transition-colors duration-300"></div>
+            <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-slate-200/60 text-accent-600 dark:bg-zinc-800 dark:text-accent-500 rounded-2xl flex items-center justify-center group-hover:bg-accent-500 group-hover:text-white transition-all duration-500">
+              <div className="w-12 h-12 bg-accent-500 text-white rounded-2xl flex items-center justify-center transition-all duration-500">
                 <SkillIcon name={skillGroup.icon} />
               </div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 transition-colors duration-300">{skillGroup.title}</h3>
@@ -525,9 +525,9 @@ function TeachingSection() {
             key={index} 
             className="relative overflow-hidden bg-white dark:bg-zinc-900/30 p-6 rounded-[1.5rem] border border-slate-200 dark:border-zinc-800/50 flex flex-col shadow-sm transition-colors duration-300 group"
           >
-            <div className="absolute top-0 left-0 w-1 h-full bg-accent-500/0 group-hover:bg-accent-500 transition-colors duration-300"></div>
+            <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
             <div className="flex justify-between items-start mb-4">
-              <div className="w-10 h-10 flex items-center justify-center bg-slate-100 text-accent-600 dark:bg-zinc-800 dark:text-accent-500 rounded-xl group-hover:bg-accent-500 group-hover:text-white transition-all duration-500">
+              <div className="w-10 h-10 flex items-center justify-center bg-accent-500 text-white rounded-xl transition-all duration-500">
                 <BookOpen size={20} />
               </div>
               <span className="text-[10px] font-mono uppercase tracking-widest bg-accent-50 text-accent-600 border border-accent-200 dark:bg-accent-500/10 dark:text-accent-500 px-2 py-1 rounded-md dark:border-accent-500/20 transition-colors duration-300">
@@ -558,9 +558,9 @@ function PublicationsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             key={index} 
-            className="relative overflow-hidden bg-white dark:bg-zinc-900/20 p-6 rounded-3xl border border-slate-200 dark:border-zinc-800/50 hover:shadow-md dark:hover:bg-zinc-900/40 dark:hover:border-zinc-700 transition-all group"
+            className="relative overflow-hidden bg-white dark:bg-zinc-900/40 p-6 rounded-3xl border border-slate-200 dark:border-zinc-700 shadow-md transition-all group"
           >
-            <div className="absolute top-0 left-0 w-1 h-full bg-accent-500/0 group-hover:bg-accent-500 transition-colors duration-300"></div>
+            <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
             {/* Top Row */}
             <div className="flex flex-wrap justify-between items-start gap-4 mb-3">
               <div className="flex items-center gap-3">
@@ -589,7 +589,7 @@ function PublicationsSection() {
             </div>
 
             {/* Title */}
-            <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 leading-snug mb-2 group-hover:text-accent-600 dark:group-hover:text-accent-500 transition-colors">
+            <h3 className="text-xl font-bold text-accent-600 dark:text-accent-500 leading-snug mb-2 transition-colors">
               {pub.title}
             </h3>
 
@@ -630,7 +630,7 @@ function PublicationsSection() {
 }
 
 function CertificatesSection() {
-  const [openCategoryIndex, setOpenCategoryIndex] = useState<number>(0);
+  const [openCategoryIndex, setOpenCategoryIndex] = useState<number>(-1);
 
   return (
     <div>
@@ -718,10 +718,10 @@ function AwardsSection() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
               key={index} 
-              className="group relative bg-white dark:bg-zinc-900/40 p-5 rounded-2xl border border-slate-200 dark:border-zinc-800/50 hover:border-accent-300 dark:hover:border-accent-500/30 hover:shadow-lg hover:shadow-accent-500/5 transition-all duration-300 overflow-hidden flex items-start gap-4"
+              className="group relative bg-white dark:bg-zinc-900/40 p-5 rounded-2xl border border-accent-300 dark:border-accent-500/30 shadow-lg shadow-accent-500/5 transition-all duration-300 overflow-hidden flex items-start gap-4"
             >
-              <div className="absolute top-0 left-0 w-1 h-full bg-accent-500/0 group-hover:bg-accent-500 transition-colors duration-300"></div>
-              <div className="p-2.5 bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 rounded-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
+              <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
+              <div className="p-2.5 bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 rounded-xl shrink-0 scale-110 transition-transform duration-300">
                 <Trophy size={20} />
               </div>
               <p className="text-slate-600 dark:text-zinc-300 text-sm leading-relaxed pt-1 transition-colors duration-300">
@@ -742,10 +742,11 @@ function AwardsSection() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
               key={index} 
-              className="group bg-white dark:bg-zinc-900/40 p-5 rounded-2xl border border-slate-200 dark:border-zinc-800/50 hover:border-accent-300 dark:hover:border-accent-500/30 hover:shadow-lg hover:shadow-accent-500/5 transition-all duration-300"
+              className="group relative overflow-hidden bg-white dark:bg-zinc-900/40 p-5 rounded-2xl border border-accent-300 dark:border-accent-500/30 shadow-lg shadow-accent-500/5 transition-all duration-300"
             >
+              <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
               <h3 className="font-bold text-slate-900 dark:text-zinc-100 mb-2 flex items-center gap-3 transition-colors duration-300">
-                <div className="w-8 h-8 rounded-lg bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="w-8 h-8 rounded-lg bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 flex items-center justify-center scale-110 transition-transform duration-300">
                   <Star size={16} />
                 </div>
                 {service.title}
