@@ -6,18 +6,8 @@ const COLORS = ['text-red-500', 'text-white', 'text-blue-500'];
 
 export default function JulyFourthTheme() {
   const [stars, setStars] = useState<{ id: number; left: number; size: number; color: string; duration: number }[]>([]);
-  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    const today = new Date();
-    // Month is 0-indexed, so 6 is July.
-    if (today.getMonth() === 6 && today.getDate() === 4) {
-      setIsActive(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!isActive) return;
 
     let idCounter = 0;
     const interval = setInterval(() => {
@@ -36,19 +26,17 @@ export default function JulyFourthTheme() {
     // Stop generating new stars after 10 seconds
     const timeout = setTimeout(() => {
       clearInterval(interval);
-    }, 10000);
+    }, 5000);
 
     return () => {
       clearInterval(interval);
       clearTimeout(timeout);
     };
-  }, [isActive]);
+  }, []);
 
   const handleAnimationComplete = (id: number) => {
     setStars(prev => prev.filter(star => star.id !== id));
   };
-
-  if (!isActive) return null;
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[200] overflow-hidden">
@@ -58,7 +46,7 @@ export default function JulyFourthTheme() {
         <div className="w-1/3 h-full bg-white blur-[150px]"></div>
         <div className="w-1/3 h-full bg-blue-600 blur-[150px] transform translate-x-1/4"></div>
       </div>
-      
+
       {/* Bottom Horizontal Glow Line */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-white to-blue-600 shadow-[0_0_15px_rgba(255,255,255,0.5)]"></div>
 
@@ -79,31 +67,31 @@ export default function JulyFourthTheme() {
         ))}
       </AnimatePresence>
 
-      <motion.div 
+      <motion.div
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-black text-white px-6 py-2.5 rounded-full border border-zinc-800 shadow-xl"
+        className="absolute bottom-4 w-[95%] md:w-auto max-w-full left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 md:gap-4 bg-black text-white px-4 md:px-6 py-2.5 rounded-full border border-zinc-800 shadow-xl"
       >
-        <motion.span 
+        <motion.span
           animate={{ y: [-3, 3, -3] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="text-2xl inline-block"
+          className="text-xl md:text-2xl inline-block shrink-0"
         >
           🎆
         </motion.span>
 
-        <span className="font-bold text-sm tracking-widest flex gap-2 items-center">
-          <span className="text-red-500">AMERICA</span> 
-          <span>250TH</span> 
-          <span className="text-blue-500">ANNIVERSARY</span> 
-          <span className="text-zinc-400 font-normal">(1776 - 2026)</span>
+        <span className="font-bold text-[10px] sm:text-xs md:text-sm tracking-wider md:tracking-widest flex flex-wrap justify-center gap-x-1 md:gap-x-2 items-center text-center">
+          <span className="text-red-500">AMERICA</span>
+          <span>250TH</span>
+          <span className="text-blue-500">ANNIVERSARY</span>
+          <span className="text-zinc-400 font-normal hidden md:inline">(1776 - 2026)</span>
         </span>
 
-        <motion.span 
+        <motion.span
           animate={{ y: [-3, 3, -3] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut", delay: 1 }}
-          className="text-lg inline-block font-black text-white"
+          className="text-base md:text-lg inline-block font-black text-white shrink-0"
         >
           US
         </motion.span>

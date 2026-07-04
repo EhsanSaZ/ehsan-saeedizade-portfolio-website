@@ -7,15 +7,15 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 
-import { 
-  User, 
+import {
+  User,
   Users,
-  GraduationCap, 
-  Code, 
-  Briefcase, 
-  BookOpen, 
-  FileText, 
-  Award, 
+  GraduationCap,
+  Code,
+  Briefcase,
+  BookOpen,
+  FileText,
+  Award,
   Trophy,
   Linkedin,
   Github,
@@ -39,31 +39,41 @@ import {
   BookMarked,
   Star,
   ChevronDown,
-  Cloud
+  Cloud,
+  Palette
 } from 'lucide-react';
-import { 
-  personalInfo, 
-  education, 
+import {
+  personalInfo,
+  education,
   // researchInterests, 
-  skills, 
-  workExperience, 
-  teachingExperience, 
-  publications, 
-  certificates, 
-  awards, 
-  services 
+  skills,
+  workExperience,
+  teachingExperience,
+  publications,
+  certificates,
+  awards,
+  services
 } from './data';
 import { FaGoogleScholar, FaResearchgate } from 'react-icons/fa6';
 import ThemeToggle from './components/ThemeToggle';
-import JulyFourthTheme from './components/JulyFourthTheme';
+import ThemeManager from './components/ThemeManager';
 
-type TabType = 'about' | 'skills' | 'work' | 'teaching' | 'publications' | 'certificates' | 'awards';
+type TabType = 'about' | 'skills' | 'work' | 'teaching' | 'publications' | 'certificates' | 'awards' | 'themes';
 
 // Feature Flag to easily enable/disable the July 4th theme
 const ENABLE_JULY_4TH_THEME = true;
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('about');
+  const [activeTheme, setActiveTheme] = useState(() => {
+    const today = new Date();
+    if (ENABLE_JULY_4TH_THEME && today.getMonth() === 6 && today.getDate() === 4) {
+      return 'july4th';
+    }
+    return 'normal';
+  });
+  const [themeKey, setThemeKey] = useState(0);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const today = new Date();
@@ -83,6 +93,16 @@ export default function App() {
     }
   }, [isDarkMode]);
 
+  // Force dark mode when switching to July 4th theme, reset on normal
+  useEffect(() => {
+    if (activeTheme === 'july4th') {
+      setIsDarkMode(true);
+    } else if (activeTheme === 'normal') {
+      const hour = new Date().getHours();
+      setIsDarkMode(hour >= 19 || hour < 7);
+    }
+  }, [activeTheme]);
+
   const tabs = [
     { id: 'about', label: 'About Me', icon: User },
     { id: 'skills', label: 'Skills', icon: Code },
@@ -91,6 +111,7 @@ export default function App() {
     { id: 'publications', label: 'Publications', icon: FileText },
     { id: 'certificates', label: 'Certificates', icon: Award },
     { id: 'awards', label: 'Awards & Services', icon: Trophy },
+    { id: 'themes', label: 'Themes', icon: Palette },
   ];
 
   // Close mobile menu and scroll to top when tab changes
@@ -101,7 +122,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0a0a0a] text-slate-600 dark:text-zinc-400 font-sans selection:bg-accent-500/30 selection:text-accent-900 dark:selection:text-accent-200 transition-colors duration-300">
-      {ENABLE_JULY_4TH_THEME && <JulyFourthTheme />}
+      {ENABLE_JULY_4TH_THEME && <ThemeManager activeTheme={activeTheme} themeKey={themeKey} />}
       {/* Background Decoration */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-accent-500/5 dark:bg-accent-600/10 blur-[120px] rounded-full transition-colors duration-300"></div>
@@ -111,8 +132,8 @@ export default function App() {
       {/* Mobile Header */}
       <header className="lg:hidden fixed top-0 left-0 right-0 z-[100] bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-slate-200 dark:border-zinc-800/50 px-4 py-4 flex justify-between items-center transition-colors duration-300">
         <div className="flex items-center gap-3">
-          <img 
-            src={personalInfo.photo} 
+          <img
+            src={personalInfo.photo}
             alt={personalInfo.name}
             className="w-10 h-10 rounded-lg object-cover border border-slate-200 dark:border-zinc-800"
             referrerPolicy="no-referrer"
@@ -121,7 +142,7 @@ export default function App() {
         </div>
         <div className="flex items-center gap-2">
           <ThemeToggle isDarkMode={isDarkMode} toggle={() => setIsDarkMode(!isDarkMode)} />
-          <button 
+          <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="p-2 text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
           >
@@ -133,7 +154,7 @@ export default function App() {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -144,11 +165,10 @@ export default function App() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as TabType)}
-                  className={`flex items-center gap-4 p-4 rounded-2xl text-lg font-medium transition-all ${
-                    activeTab === tab.id 
-                      ? 'bg-accent-50 text-accent-600 border border-accent-200 dark:bg-accent-500/10 dark:text-accent-500 dark:border-accent-500/20' 
-                      : 'text-slate-600 hover:text-slate-900 dark:text-zinc-500 dark:hover:text-zinc-200'
-                  }`}
+                  className={`flex items-center gap-4 p-4 rounded-2xl text-lg font-medium transition-all ${activeTab === tab.id
+                    ? 'bg-accent-50 text-accent-600 border border-accent-200 dark:bg-accent-500/10 dark:text-accent-500 dark:border-accent-500/20'
+                    : 'text-slate-600 hover:text-slate-900 dark:text-zinc-500 dark:hover:text-zinc-200'
+                    }`}
                 >
                   <tab.icon size={20} />
                   {tab.label}
@@ -164,8 +184,8 @@ export default function App() {
         <aside className="hidden lg:flex flex-col w-80 fixed h-screen border-r border-slate-200 dark:border-zinc-800/50 bg-white/50 dark:bg-black/20 backdrop-blur-sm p-8 z-50 transition-colors duration-300">
           <div className="mb-8 flex justify-between items-start">
             <div>
-              <img 
-                src={personalInfo.photo} 
+              <img
+                src={personalInfo.photo}
                 alt={personalInfo.name}
                 className="w-32 h-32 rounded-2xl object-cover shadow-xl shadow-accent-500/20 mb-6 border-2 border-slate-200 dark:border-zinc-800"
                 referrerPolicy="no-referrer"
@@ -185,14 +205,13 @@ export default function App() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as TabType)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all relative group ${
-                  activeTab === tab.id 
-                    ? 'text-accent-600 bg-accent-50 dark:text-accent-500 dark:bg-accent-500/5' 
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-zinc-500 dark:hover:text-zinc-300 dark:hover:bg-zinc-800/30'
-                }`}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all relative group ${activeTab === tab.id
+                  ? 'text-accent-600 bg-accent-50 dark:text-accent-500 dark:bg-accent-500/5'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-zinc-500 dark:hover:text-zinc-300 dark:hover:bg-zinc-800/30'
+                  }`}
               >
                 {activeTab === tab.id && (
-                  <motion.div 
+                  <motion.div
                     layoutId="activeTab"
                     className="absolute left-0 w-1 h-6 bg-accent-500 rounded-full"
                   />
@@ -215,8 +234,8 @@ export default function App() {
         </aside>
 
         {/* Main Content Area */}
-        <main className="flex-1 lg:ml-80 pt-24 lg:pt-0">
-          <div className="max-w-5xl mx-auto px-6 lg:px-12 py-12 lg:py-20">
+        <main className="flex-1 lg:ml-80 pt-24 lg:pt-0 flex flex-col">
+          <div className="max-w-5xl mx-auto w-full px-6 lg:px-12 py-12 lg:py-20">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
@@ -233,11 +252,18 @@ export default function App() {
                 {activeTab === 'publications' && <PublicationsSection />}
                 {activeTab === 'certificates' && <CertificatesSection />}
                 {activeTab === 'awards' && <AwardsSection />}
+                {activeTab === 'themes' && (
+                  <ThemesSection
+                    activeTheme={activeTheme}
+                    setActiveTheme={setActiveTheme}
+                    setThemeKey={setThemeKey}
+                  />
+                )}
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <footer className="px-6 lg:px-12 py-12 border-t border-slate-200 dark:border-zinc-800/50 mt-12 transition-colors duration-300">
+          <footer className="px-6 lg:px-12 py-12 border-t border-slate-200 dark:border-zinc-800/50 mt-auto transition-colors duration-300">
             {/* Mobile Social Links */}
             <div className="lg:hidden mb-8 flex justify-center gap-4">
               <SidebarSocialLink href={personalInfo.linkedin} icon={FaLinkedin} />
@@ -264,9 +290,9 @@ export default function App() {
 
 function SidebarSocialLink({ href, icon: Icon }: { href: string; icon: any }) {
   return (
-    <a 
-      href={href} 
-      target="_blank" 
+    <a
+      href={href}
+      target="_blank"
       rel="noopener noreferrer"
       className="p-2.5 rounded-lg bg-slate-100 border border-slate-200 text-slate-500 hover:text-accent-600 hover:border-accent-300 hover:bg-accent-50 dark:bg-zinc-900/50 dark:border-zinc-800/50 dark:text-zinc-500 dark:hover:text-accent-500 dark:hover:border-accent-500/30 dark:hover:bg-accent-500/5 transition-all"
     >
@@ -433,12 +459,12 @@ function SkillsSection() {
       <SectionHeader title="Technical Skills" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {skills.map((skillGroup, index) => (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.05 }}
-            key={index} 
+            key={index}
             className="relative overflow-hidden bg-white dark:bg-zinc-900/40 p-8 rounded-[2rem] border border-accent-200 dark:border-accent-500/20 shadow-md transition-all group"
           >
             <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
@@ -450,8 +476,8 @@ function SkillsSection() {
             </div>
             <div className="flex flex-wrap gap-2">
               {parseSkills(skillGroup.skills).map((skill, idx) => (
-                <span 
-                  key={idx} 
+                <span
+                  key={idx}
                   className="px-2.5 py-0.5 bg-slate-200/60 text-slate-700 dark:bg-zinc-800/80 dark:text-zinc-300 rounded-md text-sm font-medium border border-transparent hover:border-slate-300 dark:hover:border-zinc-600 transition-colors duration-300"
                 >
                   {skill}
@@ -483,12 +509,12 @@ function WorkSection() {
       <SectionHeader title="Work Experience" />
       <div className="space-y-12">
         {workExperience.map((work, index) => (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
-            key={index} 
+            key={index}
             className="relative pl-12 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-px before:bg-slate-200 dark:before:bg-zinc-800"
           >
             <div className="absolute left-0 top-0 w-3 h-3 -translate-x-1/2 rounded-full bg-accent-600 ring-8 ring-accent-100 dark:ring-accent-600/10"></div>
@@ -526,12 +552,12 @@ function TeachingSection() {
       <SectionHeader title="Teaching" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {teachingExperience.map((exp, index) => (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.05 }}
-            key={index} 
+            key={index}
             className="relative overflow-hidden bg-white dark:bg-zinc-900/30 p-6 rounded-[1.5rem] border border-slate-200 dark:border-zinc-800/50 flex flex-col shadow-sm transition-colors duration-300 group"
           >
             <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
@@ -562,11 +588,11 @@ function PublicationsSection() {
       <SectionHeader title="Publications" />
       <div className="space-y-4">
         {publications.map((pub, index) => (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            key={index} 
+            key={index}
             className="relative overflow-hidden bg-white dark:bg-zinc-900/40 p-6 rounded-3xl border border-slate-200 dark:border-zinc-700 shadow-md transition-all group"
           >
             <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
@@ -583,11 +609,11 @@ function PublicationsSection() {
                   {pub.year}
                 </div>
               </div>
-              
+
               {pub.doiUrl && (
-                <a 
-                  href={pub.doiUrl} 
-                  target="_blank" 
+                <a
+                  href={pub.doiUrl}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-zinc-300 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 px-4 py-1.5 rounded-lg hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors"
                 >
@@ -649,7 +675,7 @@ function CertificatesSection() {
           const isOpen = openCategoryIndex === index;
           return (
             <div key={index} className="bg-white dark:bg-zinc-900/30 rounded-[2rem] border border-slate-200 dark:border-zinc-800/50 overflow-hidden transition-colors duration-300">
-              <button 
+              <button
                 onClick={() => setOpenCategoryIndex(isOpen ? -1 : index)}
                 className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-colors duration-300"
               >
@@ -662,12 +688,12 @@ function CertificatesSection() {
                     {category.items.length}
                   </span>
                 </h3>
-                <ChevronDown 
-                  size={20} 
-                  className={`text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} 
+                <ChevronDown
+                  size={20}
+                  className={`text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
                 />
               </button>
-              
+
               <AnimatePresence initial={false}>
                 {isOpen && (
                   <motion.div
@@ -679,8 +705,8 @@ function CertificatesSection() {
                     <div className="p-6 pt-0 border-t border-slate-100 dark:border-zinc-800/50">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                         {category.items.map((cert, certIndex) => (
-                          <div 
-                            key={certIndex} 
+                          <div
+                            key={certIndex}
                             className="bg-slate-50 dark:bg-zinc-800/30 p-5 rounded-2xl border border-slate-200/50 dark:border-zinc-700/50 hover:border-accent-300 dark:hover:border-accent-500/30 hover:shadow-sm transition-all duration-300 flex flex-col group"
                           >
                             <h4 className="font-bold text-slate-900 dark:text-zinc-100 mb-1 line-clamp-2 transition-colors duration-300">{cert.title}</h4>
@@ -688,9 +714,9 @@ function CertificatesSection() {
                             <div className="flex items-center justify-between mt-auto pt-3 border-t border-slate-200/50 dark:border-zinc-700/50">
                               <span className="text-[10px] font-mono text-slate-500 dark:text-zinc-600 uppercase tracking-widest transition-colors duration-300">{cert.date}</span>
                               {cert.url && (
-                                <a 
-                                  href={cert.url} 
-                                  target="_blank" 
+                                <a
+                                  href={cert.url}
+                                  target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-xs font-bold text-accent-600 dark:text-accent-500 hover:text-accent-700 dark:hover:text-accent-400 flex items-center gap-1.5 transition-colors duration-300"
                                 >
@@ -721,12 +747,12 @@ function AwardsSection() {
         <SectionHeader title="Awards" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {awards.map((award, index) => (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              key={index} 
+              key={index}
               className="group relative bg-white dark:bg-zinc-900/40 p-5 rounded-2xl border border-accent-300 dark:border-accent-500/30 shadow-lg shadow-accent-500/5 transition-all duration-300 overflow-hidden flex items-start gap-4"
             >
               <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
@@ -745,12 +771,12 @@ function AwardsSection() {
         <SectionHeader title="Services" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {services.map((service, index) => (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              key={index} 
+              key={index}
               className="group relative overflow-hidden bg-white dark:bg-zinc-900/40 p-5 rounded-2xl border border-accent-300 dark:border-accent-500/30 shadow-lg shadow-accent-500/5 transition-all duration-300"
             >
               <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
@@ -766,6 +792,47 @@ function AwardsSection() {
             </motion.div>
           ))}
         </div>
+      </div>
+    </div>
+  );
+}
+
+function ThemesSection({
+  activeTheme,
+  setActiveTheme,
+  setThemeKey
+}: {
+  activeTheme: string;
+  setActiveTheme: (t: string) => void;
+  setThemeKey: (k: number) => void;
+}) {
+  const themes = [
+    { id: 'normal', name: 'Classic', icon: <Monitor size={24} /> },
+    { id: 'july4th', name: 'Red, White and Blue', icon: <Star size={24} /> },
+  ];
+
+  return (
+    <div className="space-y-8">
+      <SectionHeader title="Choose your vibe ✨" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {themes.map((theme) => (
+          <button
+            key={theme.id}
+            onClick={() => {
+              setActiveTheme(theme.id);
+              setThemeKey(Date.now());
+            }}
+            className={`p-5 flex flex-col items-center justify-center gap-3 rounded-2xl border-2 transition-all duration-300 ${activeTheme === theme.id
+              ? 'border-accent-500 bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 shadow-lg shadow-accent-500/10'
+              : 'border-slate-200 dark:border-zinc-800/50 bg-white dark:bg-zinc-900/30 text-slate-600 dark:text-zinc-400 hover:border-slate-300 dark:hover:border-zinc-700 hover:bg-slate-50 dark:hover:bg-zinc-800/50'
+              }`}
+          >
+            <div className={`p-3 rounded-xl ${activeTheme === theme.id ? 'bg-accent-100 dark:bg-accent-500/20' : 'bg-slate-100 dark:bg-zinc-800'}`}>
+              {theme.icon}
+            </div>
+            <span className="font-bold text-lg">{theme.name}</span>
+          </button>
+        ))}
       </div>
     </div>
   );
