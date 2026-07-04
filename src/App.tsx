@@ -40,7 +40,8 @@ import {
   Star,
   ChevronDown,
   Cloud,
-  Palette
+  Palette,
+  Ghost
 } from 'lucide-react';
 import {
   personalInfo,
@@ -67,8 +68,12 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('about');
   const [activeTheme, setActiveTheme] = useState(() => {
     const today = new Date();
+    // Month is 0-indexed, so 6 is July, 9 is October
     if (ENABLE_JULY_4TH_THEME && today.getMonth() === 6 && today.getDate() === 4) {
       return 'july4th';
+    }
+    if (today.getMonth() === 9) {
+      return 'halloween';
     }
     return 'normal';
   });
@@ -78,6 +83,9 @@ export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const today = new Date();
     if (ENABLE_JULY_4TH_THEME && today.getMonth() === 6 && today.getDate() === 4) {
+      return true;
+    }
+    if (today.getMonth() === 9) {
       return true;
     }
     const hour = today.getHours();
@@ -93,9 +101,9 @@ export default function App() {
     }
   }, [isDarkMode]);
 
-  // Force dark mode when switching to July 4th theme, reset on normal
+  // Force dark mode when switching to July 4th or Halloween themes, reset on normal
   useEffect(() => {
-    if (activeTheme === 'july4th') {
+    if (activeTheme === 'july4th' || activeTheme === 'halloween') {
       setIsDarkMode(true);
     } else if (activeTheme === 'normal') {
       const hour = new Date().getHours();
@@ -809,6 +817,7 @@ function ThemesSection({
   const themes = [
     { id: 'normal', name: 'Classic', icon: <Monitor size={24} /> },
     { id: 'july4th', name: 'Red, White and Blue', icon: <Star size={24} /> },
+    { id: 'halloween', name: 'Halloween', icon: <Ghost size={24} /> },
   ];
 
   return (

@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react';
 
 // Lazy load themes so their code isn't bundled into the initial load
 const JulyFourthTheme = lazy(() => import('./JulyFourthTheme'));
+const HalloweenTheme = lazy(() => import('./HalloweenTheme'));
 
 interface ThemeManagerProps {
   activeTheme: string;
@@ -14,6 +15,7 @@ export default function ThemeManager({ activeTheme, themeKey }: ThemeManagerProp
   return (
     <Suspense fallback={null}>
       {activeTheme === 'july4th' && <JulyFourthTheme key={`july4th-${themeKey}`} />}
+      {activeTheme === 'halloween' && <HalloweenTheme key={`halloween-${themeKey}`} />}
       {/* Future themes can be added here */}
     </Suspense>
   );
