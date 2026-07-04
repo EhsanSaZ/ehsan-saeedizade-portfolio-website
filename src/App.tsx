@@ -55,14 +55,22 @@ import {
 } from './data';
 import { FaGoogleScholar, FaResearchgate } from 'react-icons/fa6';
 import ThemeToggle from './components/ThemeToggle';
+import JulyFourthTheme from './components/JulyFourthTheme';
 
 type TabType = 'about' | 'skills' | 'work' | 'teaching' | 'publications' | 'certificates' | 'awards';
+
+// Feature Flag to easily enable/disable the July 4th theme
+const ENABLE_JULY_4TH_THEME = true;
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('about');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    const hour = new Date().getHours();
+    const today = new Date();
+    if (ENABLE_JULY_4TH_THEME && today.getMonth() === 6 && today.getDate() === 4) {
+      return true;
+    }
+    const hour = today.getHours();
     return hour >= 19 || hour < 7;
   });
 
@@ -93,6 +101,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0a0a0a] text-slate-600 dark:text-zinc-400 font-sans selection:bg-accent-500/30 selection:text-accent-900 dark:selection:text-accent-200 transition-colors duration-300">
+      {ENABLE_JULY_4TH_THEME && <JulyFourthTheme />}
       {/* Background Decoration */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-accent-500/5 dark:bg-accent-600/10 blur-[120px] rounded-full transition-colors duration-300"></div>
