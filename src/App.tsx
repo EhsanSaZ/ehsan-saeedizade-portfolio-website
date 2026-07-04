@@ -62,17 +62,16 @@ import ThemeManager from './components/ThemeManager';
 type TabType = 'about' | 'skills' | 'work' | 'teaching' | 'publications' | 'certificates' | 'awards' | 'themes';
 
 // Feature Flag to easily enable/disable the July 4th theme
-const ENABLE_JULY_4TH_THEME = true;
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('about');
   const [activeTheme, setActiveTheme] = useState(() => {
     const today = new Date();
     // Month is 0-indexed, so 6 is July, 9 is October
-    if (ENABLE_JULY_4TH_THEME && today.getMonth() === 6 && today.getDate() === 4) {
+    if (today.getMonth() === 6 && (today.getDate() === 4 || today.getDate() === 3)) {
       return 'july4th';
     }
-    if (today.getMonth() === 9) {
+    if (today.getMonth() === 9 && (today.getDate() === 31 || today.getDate() === 30)) {
       return 'halloween';
     }
     return 'normal';
@@ -82,10 +81,10 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const today = new Date();
-    if (ENABLE_JULY_4TH_THEME && today.getMonth() === 6 && today.getDate() === 4) {
+    if (today.getMonth() === 6 && (today.getDate() === 4 || today.getDate() === 3)) {
       return true;
     }
-    if (today.getMonth() === 9) {
+    if (today.getMonth() === 9 && (today.getDate() === 31 || today.getDate() === 30)) {
       return true;
     }
     const hour = today.getHours();
@@ -130,7 +129,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0a0a0a] text-slate-600 dark:text-zinc-400 font-sans selection:bg-accent-500/30 selection:text-accent-900 dark:selection:text-accent-200 transition-colors duration-300">
-      {ENABLE_JULY_4TH_THEME && <ThemeManager activeTheme={activeTheme} themeKey={themeKey} />}
+      {<ThemeManager activeTheme={activeTheme} themeKey={themeKey} />}
       {/* Background Decoration */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-accent-500/5 dark:bg-accent-600/10 blur-[120px] rounded-full transition-colors duration-300"></div>
@@ -283,7 +282,7 @@ export default function App() {
 
             <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-slate-400 dark:text-zinc-600 text-xs uppercase tracking-widest font-semibold">
-                Last Update April-2026
+                Last Update July-2026
               </p>
               <p className="text-slate-500 dark:text-zinc-500 text-sm">
                 © 2022 - {new Date().getFullYear()} {personalInfo.name}. All Rights Reserved.
@@ -823,7 +822,7 @@ function ThemesSection({
   return (
     <div className="space-y-8">
       <SectionHeader title="Choose your vibe ✨" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
         {themes.map((theme) => (
           <button
             key={theme.id}
