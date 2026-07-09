@@ -41,7 +41,8 @@ import {
   ChevronDown,
   Cloud,
   Palette,
-  Ghost
+  Ghost,
+  Clover
 } from 'lucide-react';
 import {
   personalInfo,
@@ -67,7 +68,10 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('about');
   const [activeTheme, setActiveTheme] = useState(() => {
     const today = new Date();
-    // Month is 0-indexed, so 6 is July, 9 is October
+    // Month is 0-indexed, so 2 is March, 6 is July, 9 is October
+    if (today.getMonth() === 2 && (today.getDate() === 16 || today.getDate() === 17)) {
+      return 'stpatricks';
+    }
     if (today.getMonth() === 6 && (today.getDate() === 4 || today.getDate() === 3)) {
       return 'july4th';
     }
@@ -81,6 +85,9 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const today = new Date();
+    if (today.getMonth() === 2 && (today.getDate() === 16 || today.getDate() === 17)) {
+      return false;
+    }
     if (today.getMonth() === 6 && (today.getDate() === 4 || today.getDate() === 3)) {
       return true;
     }
@@ -100,11 +107,15 @@ export default function App() {
     }
   }, [isDarkMode]);
 
-  // Force dark mode when switching to July 4th or Halloween themes, reset on normal
+  // Force dark mode when switching to themes, reset on normal
   useEffect(() => {
     if (activeTheme === 'july4th' || activeTheme === 'halloween') {
       setIsDarkMode(true);
-    } else if (activeTheme === 'normal') {
+    }
+    else if (activeTheme === 'stpatricks') {
+      setIsDarkMode(false);
+    }
+    else if (activeTheme === 'normal') {
       const hour = new Date().getHours();
       setIsDarkMode(hour >= 19 || hour < 7);
     }
@@ -815,6 +826,7 @@ function ThemesSection({
 }) {
   const themes = [
     { id: 'normal', name: 'Classic', icon: <Monitor size={24} /> },
+    { id: 'stpatricks', name: 'St. Patrick\'s Day', icon: <Clover size={24} /> },
     { id: 'july4th', name: 'Red, White and Blue', icon: <Star size={24} /> },
     { id: 'halloween', name: 'Halloween', icon: <Ghost size={24} /> },
   ];
