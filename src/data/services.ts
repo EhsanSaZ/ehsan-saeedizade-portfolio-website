@@ -1,7 +1,7 @@
 import { Service } from '../types';
 
 export const services: Service[] = [
-  { title: "E-FIT Super Mentor", description: "NevadaFIT, University of Nevada, Reno, 2026." }
+  { title: "E-FIT Super Mentor", description: "NevadaFIT, University of Nevada, Reno, 2026." },
   { title: "Reviewer", description: "Nevada Undergraduate Research Award (NURA), 2024-2026." },
   { title: "Technical Judge", description: "Nevada SkillsUSA (NVSkills) Computer Programming Competition, 2026." },{ title: "Conference Reviewer", description: "ICECET 2025, CCNC 2024, CCGRID 2023, IEEE CLOUD 2023." },
   { title: "Journal Reviewer", description: "ACM Computing Surveys, IEEE Transactions on Parallel and Distributed Systems, IEEE Access, Journal of Supercomputing, Journal of Computing, Journal of Grid Computing, Cluster Computing, Internet of Things and Cloud Computing, Discover Computing, Imaging Science Journal." },
