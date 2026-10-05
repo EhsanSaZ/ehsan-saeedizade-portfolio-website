@@ -42,7 +42,9 @@ import {
   Cloud,
   Palette,
   Ghost,
-  Clover
+  Clover,
+  Drumstick,
+  TreePine
 } from 'lucide-react';
 import {
   personalInfo,
@@ -62,15 +64,45 @@ import ThemeManager from './components/ThemeManager';
 
 type TabType = 'about' | 'skills' | 'work' | 'teaching' | 'publications' | 'certificates' | 'awards' | 'themes';
 
-// Feature Flag to easily enable/disable the July 4th theme
+// Helper to determine if current date falls in Thanksgiving season or Mar 25/26
+function isThanksgivingSeason(date: Date): boolean {
+  // Enabled on March 25 and 26 as specified
+  if (date.getMonth() === 2 && (date.getDate() === 25 || date.getDate() === 26)) {
+    return true;
+  }
+  // November Thanksgiving season: Nov 25/26 or 4th Thursday of November (Thanksgiving Day) + Black Friday
+  if (date.getMonth() === 10) {
+    if (date.getDate() === 25 || date.getDate() === 26) {
+      return true;
+    }
+    const firstDay = new Date(date.getFullYear(), 10, 1).getDay();
+    const offsetToFirstThursday = (4 - firstDay + 7) % 7;
+    const fourthThursday = 1 + offsetToFirstThursday + 21;
+    if (date.getDate() === fourthThursday || date.getDate() === fourthThursday + 1) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// Helper to determine if current date falls in Christmas season (Dec 23, 24, 25)
+function isChristmasSeason(date: Date): boolean {
+  return date.getMonth() === 11 && (date.getDate() === 23 || date.getDate() === 24 || date.getDate() === 25);
+}
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('about');
   const [activeTheme, setActiveTheme] = useState(() => {
     const today = new Date();
-    // Month is 0-indexed, so 2 is March, 6 is July, 9 is October
+    // Month is 0-indexed, so 2 is March, 6 is July, 9 is October, 10 is November, 11 is December
     if (today.getMonth() === 2 && (today.getDate() === 16 || today.getDate() === 17)) {
       return 'stpatricks';
+    }
+    if (isThanksgivingSeason(today)) {
+      return 'thanksgiving';
+    }
+    if (isChristmasSeason(today)) {
+      return 'christmas';
     }
     if (today.getMonth() === 6 && (today.getDate() === 4 || today.getDate() === 3)) {
       return 'july4th';
@@ -87,6 +119,12 @@ export default function App() {
     const today = new Date();
     if (today.getMonth() === 2 && (today.getDate() === 16 || today.getDate() === 17)) {
       return false;
+    }
+    if (isThanksgivingSeason(today)) {
+      return true;
+    }
+    if (isChristmasSeason(today)) {
+      return true;
     }
     if (today.getMonth() === 6 && (today.getDate() === 4 || today.getDate() === 3)) {
       return true;
@@ -109,7 +147,7 @@ export default function App() {
 
   // Force dark mode when switching to themes, reset on normal
   useEffect(() => {
-    if (activeTheme === 'july4th' || activeTheme === 'halloween') {
+    if (activeTheme === 'july4th' || activeTheme === 'halloween' || activeTheme === 'thanksgiving' || activeTheme === 'christmas') {
       setIsDarkMode(true);
     }
     else if (activeTheme === 'stpatricks') {
@@ -829,12 +867,14 @@ function ThemesSection({
     { id: 'stpatricks', name: 'St. Patrick\'s Day', icon: <Clover size={24} /> },
     { id: 'july4th', name: 'Red, White and Blue', icon: <Star size={24} /> },
     { id: 'halloween', name: 'Halloween', icon: <Ghost size={24} /> },
+    { id: 'thanksgiving', name: 'Thanksgiving', icon: <Drumstick size={24} /> },
+    { id: 'christmas', name: 'Christmas', icon: <TreePine size={24} /> },
   ];
 
   return (
     <div className="space-y-8">
       <SectionHeader title="Choose your vibe ✨" />
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {themes.map((theme) => (
           <button
             key={theme.id}
@@ -842,7 +882,7 @@ function ThemesSection({
               setActiveTheme(theme.id);
               setThemeKey(Date.now());
             }}
-            className={`p-5 flex flex-col items-center justify-center gap-3 rounded-2xl border-2 transition-all duration-300 ${activeTheme === theme.id
+            className={`p-6 min-h-[140px] flex flex-col items-center justify-center gap-3 rounded-2xl border-2 transition-all duration-300 ${activeTheme === theme.id
               ? 'border-accent-500 bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 shadow-lg shadow-accent-500/10'
               : 'border-slate-200 dark:border-zinc-800/50 bg-white dark:bg-zinc-900/30 text-slate-600 dark:text-zinc-400 hover:border-slate-300 dark:hover:border-zinc-700 hover:bg-slate-50 dark:hover:bg-zinc-800/50'
               }`}
@@ -850,7 +890,7 @@ function ThemesSection({
             <div className={`p-3 rounded-xl ${activeTheme === theme.id ? 'bg-accent-100 dark:bg-accent-500/20' : 'bg-slate-100 dark:bg-zinc-800'}`}>
               {theme.icon}
             </div>
-            <span className="font-bold text-lg">{theme.name}</span>
+            <span className="font-bold text-base sm:text-lg text-center leading-snug">{theme.name}</span>
           </button>
         ))}
       </div>

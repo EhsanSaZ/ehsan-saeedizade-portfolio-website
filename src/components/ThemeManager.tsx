@@ -4,6 +4,8 @@ import { Suspense, lazy } from 'react';
 const JulyFourthTheme = lazy(() => import('./JulyFourthTheme'));
 const HalloweenTheme = lazy(() => import('./HalloweenTheme'));
 const StPatricksTheme = lazy(() => import('./StPatricksTheme'));
+const ThanksgivingTheme = lazy(() => import('./ThanksgivingTheme'));
+const ChristmasTheme = lazy(() => import('./ChristmasTheme'));
 
 interface ThemeManagerProps {
   activeTheme: string;
@@ -18,6 +20,8 @@ export default function ThemeManager({ activeTheme, themeKey }: ThemeManagerProp
       {activeTheme === 'july4th' && <JulyFourthTheme key={`july4th-${themeKey}`} />}
       {activeTheme === 'halloween' && <HalloweenTheme key={`halloween-${themeKey}`} />}
       {activeTheme === 'stpatricks' && <StPatricksTheme key={`stpatricks-${themeKey}`} />}
+      {activeTheme === 'thanksgiving' && <ThanksgivingTheme key={`thanksgiving-${themeKey}`} />}
+      {activeTheme === 'christmas' && <ChristmasTheme key={`christmas-${themeKey}`} />}
       {/* Future themes can be added here */}
     </Suspense>
   );
