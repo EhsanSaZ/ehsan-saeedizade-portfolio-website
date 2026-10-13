@@ -1,4 +1,4 @@
-import { Briefcase, ShieldCheck, Mail, ArrowUpRight } from 'lucide-react';
+import { Briefcase, IdCard, Mail, ArrowUpRight } from 'lucide-react';
 import { FaLinkedin } from 'react-icons/fa';
 import { personalInfo } from '../data';
 
@@ -45,7 +45,7 @@ export default function OpenToWorkBanner() {
         {/* Work Authorization Callout */}
         <div className="p-2.5 sm:py-2 sm:px-3 rounded-xl bg-white/80 dark:bg-slate-950/60 border border-amber-200/80 dark:border-cyan-500/30 flex items-center gap-2.5 transition-colors duration-300">
           <div className="p-1 rounded-full bg-amber-100 text-amber-700 dark:bg-cyan-500/25 dark:text-cyan-300 shrink-0 transition-colors duration-300">
-            <ShieldCheck size={15} />
+            <IdCard size={15} />
           </div>
           <p className="text-sm sm:text-sm text-slate-700 dark:text-zinc-200 leading-normal">
             <strong className="font-semibold text-slate-900 dark:text-zinc-100">Work Authorization:</strong>{' '}
