@@ -11,4 +11,6 @@ export const personalInfo = {
   researchgate: "https://www.researchgate.net/profile/Ehsan-Saeedizade",
   github: "https://github.com/EhsanSaZ",
   photo: photo,
+  // Banner visibility toggle: set to false to hide the Open to Work banner
+  showOpenToWorkBanner: true,
 };

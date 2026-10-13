@@ -61,6 +61,7 @@ import {
 import { FaGoogleScholar, FaResearchgate } from 'react-icons/fa6';
 import ThemeToggle from './components/ThemeToggle';
 import ThemeManager from './components/ThemeManager';
+import OpenToWorkBanner from './components/OpenToWorkBanner';
 
 type TabType = 'about' | 'skills' | 'work' | 'teaching' | 'publications' | 'certificates' | 'awards' | 'themes';
 
@@ -380,6 +381,8 @@ function AboutSection() {
           A researcher and engineer focused on advancing AI/ML-driven solutions, distributed infrastructures, and scalable, privacy-preserving intelligent applications.
         </p>
       </div>
+
+      {personalInfo.showOpenToWorkBanner && <OpenToWorkBanner />}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column: Bio & Education */}
