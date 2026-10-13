@@ -232,60 +232,71 @@ export default function App() {
                 </button>
               ))}
             </nav>
+            <div className="pt-6 border-t border-slate-200 dark:border-zinc-800/50 flex justify-center gap-3 mt-auto">
+              <SidebarSocialLink href={personalInfo.linkedin} icon={FaLinkedin} title="LinkedIn" />
+              <SidebarSocialLink href={personalInfo.github} icon={FaGithub} title="GitHub" />
+              <SidebarSocialLink href={personalInfo.scholar} icon={FaGoogleScholar} title="Google Scholar" />
+              <SidebarSocialLink href={personalInfo.researchgate} icon={FaResearchgate} title="ResearchGate" />
+              <SidebarSocialLink href={`mailto:${personalInfo.email}`} icon={FaEnvelope} title="Email" />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
       <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row min-h-screen relative">
         {/* Desktop Sidebar */}
-        <aside className="hidden lg:flex flex-col w-80 fixed h-screen border-r border-slate-200 dark:border-zinc-800/50 bg-white/50 dark:bg-black/20 backdrop-blur-sm p-8 z-50 transition-colors duration-300">
-          <div className="mb-8 flex justify-between items-start">
+        <aside className="hidden lg:block w-80 fixed top-0 left-0 h-screen overflow-y-auto sidebar-scrollbar border-r border-slate-200 dark:border-zinc-800/50 bg-white/50 dark:bg-black/20 backdrop-blur-sm z-50 transition-colors duration-300">
+          <div className="min-h-full flex flex-col justify-between p-8">
             <div>
-              <img
-                src={personalInfo.photo}
-                alt={personalInfo.name}
-                className="w-32 h-32 rounded-2xl object-cover shadow-xl shadow-accent-500/20 mb-6 border-2 border-slate-200 dark:border-zinc-800"
-                referrerPolicy="no-referrer"
-              />
-              <h1 className="text-xl xl:text-2xl font-bold whitespace-nowrap text-slate-900 dark:text-zinc-100 tracking-tight leading-tight mb-2">
-                {personalInfo.name}
-              </h1>
-              <p className="text-sm text-slate-500 dark:text-zinc-500 font-medium leading-relaxed">
-                {personalInfo.title}
-              </p>
-            </div>
-            <ThemeToggle isDarkMode={isDarkMode} toggle={() => setIsDarkMode(!isDarkMode)} />
-          </div>
-
-          <nav className="flex-1 space-y-1">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id as TabType)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all relative group ${activeTab === tab.id
-                  ? 'text-accent-600 bg-accent-50 dark:text-accent-500 dark:bg-accent-500/5'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-zinc-500 dark:hover:text-zinc-300 dark:hover:bg-zinc-800/30'
-                  }`}
-              >
-                {activeTab === tab.id && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute left-0 w-1 h-6 bg-accent-500 rounded-full"
+              <div className="mb-8 flex justify-between items-start">
+                <div>
+                  <img
+                    src={personalInfo.photo}
+                    alt={personalInfo.name}
+                    className="w-32 h-32 rounded-2xl object-cover shadow-xl shadow-accent-500/20 mb-6 border-2 border-slate-200 dark:border-zinc-800"
+                    referrerPolicy="no-referrer"
                   />
-                )}
-                <tab.icon size={18} className={activeTab === tab.id ? 'text-accent-500' : 'text-slate-400 group-hover:text-slate-600 dark:text-zinc-600 dark:group-hover:text-zinc-400'} />
-                {tab.label}
-              </button>
-            ))}
-          </nav>
+                  <h1 className="text-xl xl:text-2xl font-bold whitespace-nowrap text-slate-900 dark:text-zinc-100 tracking-tight leading-tight mb-2">
+                    {personalInfo.name}
+                  </h1>
+                  <p className="text-sm text-slate-500 dark:text-zinc-500 font-medium leading-relaxed">
+                    {personalInfo.title}
+                  </p>
+                </div>
+                <ThemeToggle isDarkMode={isDarkMode} toggle={() => setIsDarkMode(!isDarkMode)} />
+              </div>
 
-          <div className="mt-auto pt-8 border-t border-slate-200 dark:border-zinc-800/50 transition-colors duration-300">
-            <div className="flex gap-3">
-              <SidebarSocialLink href={personalInfo.linkedin} icon={FaLinkedin} />
-              <SidebarSocialLink href={personalInfo.github} icon={FaGithub} />
-              <SidebarSocialLink href={personalInfo.scholar} icon={FaGoogleScholar} />
-              <SidebarSocialLink href={personalInfo.researchgate} icon={FaResearchgate} />
-              <SidebarSocialLink href={`mailto:${personalInfo.email}`} icon={FaEnvelope} />
+              <nav className="space-y-1 mb-8">
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id as TabType)}
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all relative group ${activeTab === tab.id
+                      ? 'text-accent-600 bg-accent-50 dark:text-accent-500 dark:bg-accent-500/5'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-zinc-500 dark:hover:text-zinc-300 dark:hover:bg-zinc-800/30'
+                      }`}
+                  >
+                    {activeTab === tab.id && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute left-0 w-1 h-6 bg-accent-500 rounded-full"
+                      />
+                    )}
+                    <tab.icon size={18} className={activeTab === tab.id ? 'text-accent-500' : 'text-slate-400 group-hover:text-slate-600 dark:text-zinc-600 dark:group-hover:text-zinc-400'} />
+                    {tab.label}
+                  </button>
+                ))}
+              </nav>
+            </div>
+
+            <div className="pt-8 border-t border-slate-200 dark:border-zinc-800/50 transition-colors duration-300">
+              <div className="flex gap-3">
+                <SidebarSocialLink href={personalInfo.linkedin} icon={FaLinkedin} title="LinkedIn" />
+                <SidebarSocialLink href={personalInfo.github} icon={FaGithub} title="GitHub" />
+                <SidebarSocialLink href={personalInfo.scholar} icon={FaGoogleScholar} title="Google Scholar" />
+                <SidebarSocialLink href={personalInfo.researchgate} icon={FaResearchgate} title="ResearchGate" />
+                <SidebarSocialLink href={`mailto:${personalInfo.email}`} icon={FaEnvelope} title="Email" />
+              </div>
             </div>
           </div>
         </aside>
@@ -323,11 +334,11 @@ export default function App() {
           <footer className="px-6 lg:px-12 py-12 border-t border-slate-200 dark:border-zinc-800/50 mt-auto transition-colors duration-300">
             {/* Mobile Social Links */}
             <div className="lg:hidden mb-8 flex justify-center gap-4">
-              <SidebarSocialLink href={personalInfo.linkedin} icon={FaLinkedin} />
-              <SidebarSocialLink href={personalInfo.github} icon={FaGithub} />
-              <SidebarSocialLink href={personalInfo.scholar} icon={FaGoogleScholar} />
-              <SidebarSocialLink href={personalInfo.researchgate} icon={FaResearchgate} />
-              <SidebarSocialLink href={`mailto:${personalInfo.email}`} icon={FaEnvelope} />
+              <SidebarSocialLink href={personalInfo.linkedin} icon={FaLinkedin} title="LinkedIn" />
+              <SidebarSocialLink href={personalInfo.github} icon={FaGithub} title="GitHub" />
+              <SidebarSocialLink href={personalInfo.scholar} icon={FaGoogleScholar} title="Google Scholar" />
+              <SidebarSocialLink href={personalInfo.researchgate} icon={FaResearchgate} title="ResearchGate" />
+              <SidebarSocialLink href={`mailto:${personalInfo.email}`} icon={FaEnvelope} title="Email" />
             </div>
 
             <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
@@ -345,13 +356,15 @@ export default function App() {
   );
 }
 
-function SidebarSocialLink({ href, icon: Icon }: { href: string; icon: any }) {
+function SidebarSocialLink({ href, icon: Icon, title }: { href: string; icon: any; title?: string }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="p-2.5 rounded-lg bg-slate-100 border border-slate-200 text-slate-500 hover:text-accent-600 hover:border-accent-300 hover:bg-accent-50 dark:bg-zinc-900/50 dark:border-zinc-800/50 dark:text-zinc-500 dark:hover:text-accent-500 dark:hover:border-accent-500/30 dark:hover:bg-accent-500/5 transition-all"
+      title={title}
+      aria-label={title}
+      className="p-2.5 rounded-lg border text-accent-600 bg-accent-50 border-accent-300 hover:text-accent-700 hover:bg-accent-100 hover:border-accent-400 dark:text-accent-500 dark:bg-accent-500/10 dark:border-accent-500/30 dark:hover:text-accent-600 dark:hover:bg-accent-500/20 dark:hover:border-accent-500/50 transition-all duration-200 shadow-xs"
     >
       <Icon size={18} />
     </a>
@@ -373,7 +386,7 @@ function SectionHeader({ title, subtitle }: { title: string; subtitle?: string }
 function AboutSection() {
   return (
     <div className="space-y-8">
-      <div className="mb-12">
+      <div>
         <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 dark:text-zinc-100 tracking-tight mb-4 transition-colors duration-300">
           Who am I?
         </h1>
