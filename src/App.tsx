@@ -343,7 +343,7 @@ export default function App() {
 
             <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-slate-400 dark:text-zinc-600 text-xs uppercase tracking-widest font-semibold">
-                Last Update July-2026
+                Last Update October-2026
               </p>
               <p className="text-slate-500 dark:text-zinc-500 text-sm">
                 © 2022 - {new Date().getFullYear()} {personalInfo.name}. All Rights Reserved.
@@ -852,14 +852,40 @@ function AwardsSection() {
               className="group relative overflow-hidden bg-white dark:bg-zinc-900/40 p-5 rounded-2xl border border-accent-300 dark:border-accent-500/30 shadow-lg shadow-accent-500/5 transition-all duration-300"
             >
               <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
-              <h3 className="font-bold text-slate-900 dark:text-zinc-100 mb-2 flex items-center gap-3 transition-colors duration-300">
-                <div className="w-8 h-8 rounded-lg bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 flex items-center justify-center scale-110 transition-transform duration-300">
-                  <Star size={16} />
-                </div>
-                {service.title}
-              </h3>
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <h3 className="font-bold text-slate-900 dark:text-zinc-100 flex items-center gap-3 transition-colors duration-300">
+                  <div className="w-8 h-8 rounded-lg bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 flex items-center justify-center scale-110 transition-transform duration-300 shrink-0">
+                    <Star size={16} />
+                  </div>
+                  {service.title}
+                </h3>
+                {service.url && (
+                  <a
+                    href={service.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-400 hover:text-accent-600 dark:hover:text-accent-400 p-1 rounded-lg hover:bg-accent-50 dark:hover:bg-accent-500/10 transition-all duration-200 shrink-0 mt-0.5"
+                    title={`Visit ${service.title}`}
+                    aria-label={`Visit link for ${service.title}`}
+                  >
+                    <ExternalLink size={16} />
+                  </a>
+                )}
+              </div>
               <p className="text-sm text-slate-600 dark:text-zinc-500 leading-relaxed font-light transition-colors duration-300 pl-11">
-                {service.description}
+                {service.url ? (
+                  <a
+                    href={service.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-accent-600 dark:hover:text-accent-400 inline-flex items-center gap-1.5 transition-colors underline decoration-accent-500/30 hover:decoration-accent-500 underline-offset-4"
+                  >
+                    <span>{service.description}</span>
+                    <ExternalLink size={12} className="shrink-0 opacity-70" />
+                  </a>
+                ) : (
+                  service.description
+                )}
               </p>
             </motion.div>
           ))}

@@ -24,7 +24,7 @@ export const teachingExperience: TeachingExperience[] = [
   },
   {
     course: "Testing and DevOps",
-    period: "Spring-2025, Spring-2024, Fall-2023",
+    period: "Fall-2026, Spring-2025, Spring-2024, Fall-2023",
     role: "Graduate Teaching Assistant",
     institution: "University Of Nevada-Reno",
     responsibilities: "Grading, Mentorship, Practice sessions"

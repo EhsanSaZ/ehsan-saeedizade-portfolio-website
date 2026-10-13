@@ -1,9 +1,11 @@
 import { Service } from '../types';
 
 export const services: Service[] = [
+  { title: "Student Volunteer", description: "IEEE MILCOM 2026.", url: "https://milcom2026.ieee-milcom.org/" },
   { title: "E-FIT Super Mentor", description: "NevadaFIT, University of Nevada, Reno, 2026." },
   { title: "Reviewer", description: "Nevada Undergraduate Research Award (NURA), 2024-2026." },
-  { title: "Technical Judge", description: "Nevada SkillsUSA (NVSkills) Computer Programming Competition, 2026." },{ title: "Conference Reviewer", description: "ICECET 2025, CCNC 2024, CCGRID 2023, IEEE CLOUD 2023." },
+  { title: "Technical Judge", description: "Nevada SkillsUSA (NVSkills) Computer Programming Competition, 2026." },
+  { title: "Conference Reviewer", description: "ICECET 2025, CCNC 2024, CCGRID 2023, IEEE CLOUD 2023." },
   { title: "Journal Reviewer", description: "ACM Computing Surveys, IEEE Transactions on Parallel and Distributed Systems, IEEE Access, Journal of Supercomputing, Journal of Computing, Journal of Grid Computing, Cluster Computing, Internet of Things and Cloud Computing, Discover Computing, Imaging Science Journal." },
   { title: "Technical Program Committee (TPC) Member", description: "CSAE 2025, ICACTE 2025, ICACTE 2026." },
   { title: "Executive Member", description: "25th International Computer Conference (CSICC 2020)." },
