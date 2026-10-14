@@ -56,6 +56,7 @@ export interface CertificateCategory {
 
 export interface Award {
   description: string;
+  year?: string;
 }
 
 export interface Service {

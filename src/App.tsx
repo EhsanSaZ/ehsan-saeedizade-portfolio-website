@@ -813,84 +813,220 @@ function CertificatesSection() {
 }
 
 function AwardsSection() {
+  const [filter, setFilter] = useState<'all' | 'awards' | 'services'>('all');
+
+  const showAwards = filter === 'all' || filter === 'awards';
+  const showServices = filter === 'all' || filter === 'services';
+
   return (
-    <div className="space-y-16">
+    <div className="space-y-8">
+      {/* Header and Controls */}
       <div>
-        <SectionHeader title="Awards" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {awards.map((award, index) => (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              key={index}
-              className="group relative bg-white dark:bg-zinc-900/40 p-5 rounded-2xl border border-accent-300 dark:border-accent-500/30 shadow-lg shadow-accent-500/5 transition-all duration-300 overflow-hidden flex items-start gap-4"
+        <SectionHeader
+          title="Awards & Services"
+          subtitle="Honors, scholarships, peer reviews, program committees, and community leadership."
+        />
+
+        {/* Compact Filter Pills */}
+        <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-zinc-800/60 rounded-xl border border-slate-200/60 dark:border-zinc-700/60 w-fit -mt-6 mb-8">
+          <button
+            onClick={() => setFilter('all')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+              filter === 'all'
+                ? 'bg-white dark:bg-zinc-900 text-accent-600 dark:text-accent-400 font-semibold shadow-sm border border-slate-200/50 dark:border-zinc-700/50'
+                : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
+            }`}
+          >
+            <span>All</span>
+            <span
+              className={`px-1.5 py-0.5 rounded-full text-[10px] font-mono leading-none transition-colors ${
+                filter === 'all'
+                  ? 'bg-accent-50 dark:bg-accent-500/15 text-accent-600 dark:text-accent-400'
+                  : 'bg-slate-200/70 dark:bg-zinc-700/60 text-slate-500 dark:text-zinc-400'
+              }`}
             >
-              <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
-              <div className="p-2.5 bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 rounded-xl shrink-0 scale-110 transition-transform duration-300">
-                <Trophy size={20} />
-              </div>
-              <p className="text-slate-600 dark:text-zinc-300 text-sm leading-relaxed pt-1 transition-colors duration-300">
-                {award.description}
-              </p>
-            </motion.div>
-          ))}
+              {awards.length + services.length}
+            </span>
+          </button>
+          <button
+            onClick={() => setFilter('awards')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+              filter === 'awards'
+                ? 'bg-white dark:bg-zinc-900 text-accent-600 dark:text-accent-400 font-semibold shadow-sm border border-slate-200/50 dark:border-zinc-700/50'
+                : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
+            }`}
+          >
+            <Trophy size={13} />
+            <span>Awards</span>
+            <span
+              className={`px-1.5 py-0.5 rounded-full text-[10px] font-mono leading-none transition-colors ${
+                filter === 'awards'
+                  ? 'bg-accent-50 dark:bg-accent-500/15 text-accent-600 dark:text-accent-400'
+                  : 'bg-slate-200/70 dark:bg-zinc-700/60 text-slate-500 dark:text-zinc-400'
+              }`}
+            >
+              {awards.length}
+            </span>
+          </button>
+          <button
+            onClick={() => setFilter('services')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+              filter === 'services'
+                ? 'bg-white dark:bg-zinc-900 text-accent-600 dark:text-accent-400 font-semibold shadow-sm border border-slate-200/50 dark:border-zinc-700/50'
+                : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
+            }`}
+          >
+            <Star size={13} />
+            <span>Services</span>
+            <span
+              className={`px-1.5 py-0.5 rounded-full text-[10px] font-mono leading-none transition-colors ${
+                filter === 'services'
+                  ? 'bg-accent-50 dark:bg-accent-500/15 text-accent-600 dark:text-accent-400'
+                  : 'bg-slate-200/70 dark:bg-zinc-700/60 text-slate-500 dark:text-zinc-400'
+              }`}
+            >
+              {services.length}
+            </span>
+          </button>
         </div>
       </div>
 
-      <div>
-        <SectionHeader title="Services" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {services.map((service, index) => (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              key={index}
-              className="group relative overflow-hidden bg-white dark:bg-zinc-900/40 p-5 rounded-2xl border border-accent-300 dark:border-accent-500/30 shadow-lg shadow-accent-500/5 transition-all duration-300"
-            >
-              <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
-              <div className="flex items-start justify-between gap-2 mb-2">
-                <h3 className="font-bold text-slate-900 dark:text-zinc-100 flex items-center gap-3 transition-colors duration-300">
-                  <div className="w-8 h-8 rounded-lg bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 flex items-center justify-center scale-110 transition-transform duration-300 shrink-0">
-                    <Star size={16} />
-                  </div>
-                  {service.title}
+      {/* Awards Compact Master Container */}
+      {showAwards && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+          className="relative bg-white dark:bg-zinc-900/40 rounded-2xl border border-accent-300 dark:border-accent-500/30 shadow-lg shadow-accent-500/5 overflow-hidden transition-all duration-300"
+        >
+          {/* Signature Accent Line */}
+          <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300 z-10 pointer-events-none"></div>
+
+          {/* Section Panel Header */}
+          <div className="px-5 py-3.5 sm:px-6 sm:py-4 border-b border-accent-300/40 dark:border-accent-500/20 bg-accent-50/20 dark:bg-accent-500/5 flex items-center justify-between gap-4 pl-6">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 rounded-xl shrink-0">
+                <Trophy size={18} />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-900 dark:text-zinc-100 text-base sm:text-lg">
+                  Honors & Awards
                 </h3>
-                {service.url && (
-                  <a
-                    href={service.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-slate-400 hover:text-accent-600 dark:hover:text-accent-400 p-1 rounded-lg hover:bg-accent-50 dark:hover:bg-accent-500/10 transition-all duration-200 shrink-0 mt-0.5"
-                    title={`Visit ${service.title}`}
-                    aria-label={`Visit link for ${service.title}`}
-                  >
-                    <ExternalLink size={16} />
-                  </a>
+                <p className="text-xs text-slate-500 dark:text-zinc-400 hidden sm:block">
+                  Academic grants, scholarships, and competition placements
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Compact Divided List */}
+          <div className="divide-y divide-slate-100 dark:divide-zinc-800/60 pl-2">
+            {awards.map((award, index) => (
+              <div
+                key={index}
+                className="group relative px-4 sm:px-5 py-3 flex items-start sm:items-center justify-between gap-3 sm:gap-4 hover:bg-accent-50/50 dark:hover:bg-accent-500/5 transition-colors duration-150"
+              >
+                <div className="flex items-start gap-3 flex-1 min-w-0">
+                  <div className="w-6 h-6 rounded-md bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 flex items-center justify-center shrink-0 mt-0.5 sm:mt-0 group-hover:scale-110 transition-transform duration-200">
+                    <Trophy size={13} />
+                  </div>
+                  <p className="text-sm text-slate-700 dark:text-zinc-300 leading-relaxed font-normal group-hover:text-slate-900 dark:group-hover:text-zinc-100 transition-colors">
+                    {award.description}
+                  </p>
+                </div>
+                {award.year && (
+                  <span className="shrink-0 text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-accent-50 text-accent-600 dark:bg-accent-500/10 dark:text-accent-400 border border-accent-300/50 dark:border-accent-500/20 group-hover:border-accent-400 dark:group-hover:border-accent-500/40 transition-colors">
+                    {award.year}
+                  </span>
                 )}
               </div>
-              <p className="text-sm text-slate-600 dark:text-zinc-500 leading-relaxed font-light transition-colors duration-300 pl-11">
-                {service.url ? (
-                  <a
-                    href={service.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-accent-600 dark:hover:text-accent-400 inline-flex items-center gap-1.5 transition-colors underline decoration-accent-500/30 hover:decoration-accent-500 underline-offset-4"
-                  >
-                    <span>{service.description}</span>
-                    <ExternalLink size={12} className="shrink-0 opacity-70" />
-                  </a>
-                ) : (
-                  service.description
-                )}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
+
+      {/* Services Compact Master Container */}
+      {showServices && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+          className="relative bg-white dark:bg-zinc-900/40 rounded-2xl border border-accent-300 dark:border-accent-500/30 shadow-lg shadow-accent-500/5 overflow-hidden transition-all duration-300"
+        >
+          {/* Signature Accent Line */}
+          <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300 z-10 pointer-events-none"></div>
+
+          {/* Section Panel Header */}
+          <div className="px-5 py-3.5 sm:px-6 sm:py-4 border-b border-accent-300/40 dark:border-accent-500/20 bg-accent-50/20 dark:bg-accent-500/5 flex items-center justify-between gap-4 pl-6">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 rounded-xl shrink-0">
+                <Star size={18} />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-900 dark:text-zinc-100 text-base sm:text-lg">
+                  Academic & Professional Services
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-zinc-400 hidden sm:block">
+                  Peer reviews, program committees, mentoring, and conference organization
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Compact Divided List */}
+          <div className="divide-y divide-slate-100 dark:divide-zinc-800/60 pl-2">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="group relative px-4 sm:px-5 py-3 flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-6 hover:bg-accent-50/50 dark:hover:bg-accent-500/5 transition-colors duration-150"
+              >
+                {/* Role / Title Column */}
+                <div className="flex items-center gap-2.5 sm:w-56 lg:w-64 shrink-0">
+                  <div className="w-6 h-6 rounded-md bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-200">
+                    <Star size={13} />
+                  </div>
+                  <h4 className="font-semibold text-sm text-slate-900 dark:text-zinc-100 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">
+                    {service.title}
+                  </h4>
+                </div>
+
+                {/* Description Column & Link */}
+                <div className="flex-1 flex items-start justify-between gap-3 pl-8 sm:pl-0">
+                  <p className="text-sm text-slate-600 dark:text-zinc-400 font-light leading-relaxed">
+                    {service.url ? (
+                      <a
+                        href={service.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-accent-600 dark:hover:text-accent-400 inline-flex items-center gap-1.5 transition-colors underline decoration-accent-500/30 hover:decoration-accent-500 underline-offset-4"
+                      >
+                        <span>{service.description}</span>
+                        <ExternalLink size={12} className="shrink-0 opacity-70" />
+                      </a>
+                    ) : (
+                      service.description
+                    )}
+                  </p>
+
+                  {service.url && (
+                    <a
+                      href={service.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-400 hover:text-accent-600 dark:hover:text-accent-400 p-1 rounded-lg hover:bg-accent-50 dark:hover:bg-accent-500/10 transition-all duration-200 shrink-0 self-center hidden sm:flex items-center gap-1 text-xs font-medium"
+                      title={`Visit ${service.title}`}
+                      aria-label={`Visit link for ${service.title}`}
+                    >
+                      <span>Visit</span>
+                      <ExternalLink size={12} />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 }
