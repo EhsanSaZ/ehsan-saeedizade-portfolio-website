@@ -622,29 +622,35 @@ function TeachingSection() {
   return (
     <div>
       <SectionHeader title="Teaching" />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
         {teachingExperience.map((exp, index) => (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.05 }}
+            transition={{ delay: index * 0.04 }}
             key={index}
-            className="relative overflow-hidden bg-white dark:bg-zinc-900/30 p-6 rounded-[1.5rem] border border-slate-200 dark:border-zinc-800/50 flex flex-col shadow-sm transition-colors duration-300 group"
+            className="relative overflow-hidden bg-white dark:bg-zinc-900/30 p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-zinc-800/60 hover:border-accent-300 dark:hover:border-accent-500/30 hover:shadow-md flex flex-col shadow-xs transition-all duration-300 group"
           >
             <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
-            <div className="flex justify-between items-start mb-4">
-              <div className="w-10 h-10 flex items-center justify-center bg-accent-500 text-white rounded-xl transition-all duration-500">
-                <BookOpen size={20} />
+            <div className="flex justify-between items-start gap-2.5 mb-2.5">
+              <div className="w-8 h-8 flex items-center justify-center bg-accent-500 text-white rounded-lg shrink-0 group-hover:scale-105 transition-transform duration-300 shadow-xs">
+                <BookOpen size={16} />
               </div>
-              <span className="text-[10px] font-mono uppercase tracking-widest bg-accent-50 text-accent-600 border border-accent-200 dark:bg-accent-500/10 dark:text-accent-500 px-2 py-1 rounded-md dark:border-accent-500/20 transition-colors duration-300">
+              <span className="text-[10px] font-mono uppercase tracking-wider bg-accent-50 text-accent-600 border border-accent-200 dark:bg-accent-500/10 dark:text-accent-400 px-2 py-0.5 rounded-md dark:border-accent-500/20 transition-colors duration-300 text-right leading-tight max-w-[70%]">
                 {exp.period}
               </span>
             </div>
-            <h3 className="text-lg font-bold text-slate-900 dark:text-zinc-100 mb-1 transition-colors duration-300">{exp.course}</h3>
-            <div className="text-sm text-slate-600 dark:text-zinc-500 font-medium mb-1 transition-colors duration-300">{exp.role}</div>
-            <div className="text-xs text-slate-500 dark:text-zinc-600 mb-4 transition-colors duration-300">{exp.institution}</div>
-            <div className="mt-auto pt-4 border-t border-slate-200 dark:border-zinc-800/50 text-sm text-slate-500 dark:text-zinc-400 italic leading-relaxed transition-colors duration-300">
+            <h3 className="text-[15px] sm:text-base font-bold text-slate-900 dark:text-zinc-100 mb-1 leading-snug transition-colors duration-300 group-hover:text-accent-600 dark:group-hover:text-accent-400">
+              {exp.course}
+            </h3>
+            <div className="text-xs text-slate-600 dark:text-zinc-400 font-medium mb-0.5 transition-colors duration-300">
+              {exp.role}
+            </div>
+            <div className="text-[11px] text-slate-500 dark:text-zinc-500 mb-3 transition-colors duration-300">
+              {exp.institution}
+            </div>
+            <div className="mt-auto pt-2.5 border-t border-slate-100 dark:border-zinc-800/60 text-xs text-slate-500 dark:text-zinc-400 italic leading-snug transition-colors duration-300">
               {exp.responsibilities}
             </div>
           </motion.div>
@@ -876,7 +882,7 @@ function AwardsSection() {
                 : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
             }`}
           >
-            <Star size={13} />
+            <Star size={13} className="fill-current" />
             <span>Services</span>
             <span
               className={`px-1.5 py-0.5 rounded-full text-[10px] font-mono leading-none transition-colors ${
@@ -905,7 +911,7 @@ function AwardsSection() {
           {/* Section Panel Header */}
           <div className="px-5 py-3.5 sm:px-6 sm:py-4 border-b border-accent-300/40 dark:border-accent-500/20 bg-accent-50/20 dark:bg-accent-500/5 flex items-center justify-between gap-4 pl-6">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 rounded-xl shrink-0">
+              <div className="p-2 bg-accent-500 text-white rounded-xl shrink-0 shadow-xs">
                 <Trophy size={18} />
               </div>
               <div>
@@ -927,7 +933,7 @@ function AwardsSection() {
                 className="group relative px-4 sm:px-5 py-3 flex items-start sm:items-center justify-between gap-3 sm:gap-4 hover:bg-accent-50/50 dark:hover:bg-accent-500/5 transition-colors duration-150"
               >
                 <div className="flex items-start gap-3 flex-1 min-w-0">
-                  <div className="w-6 h-6 rounded-md bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 flex items-center justify-center shrink-0 mt-0.5 sm:mt-0 group-hover:scale-110 transition-transform duration-200">
+                  <div className="w-6 h-6 rounded-md bg-accent-500 text-white flex items-center justify-center shrink-0 mt-0.5 sm:mt-0 group-hover:scale-110 transition-transform duration-200 shadow-xs">
                     <Trophy size={13} />
                   </div>
                   <p className="text-sm text-slate-700 dark:text-zinc-300 leading-relaxed font-normal group-hover:text-slate-900 dark:group-hover:text-zinc-100 transition-colors">
@@ -959,8 +965,8 @@ function AwardsSection() {
           {/* Section Panel Header */}
           <div className="px-5 py-3.5 sm:px-6 sm:py-4 border-b border-accent-300/40 dark:border-accent-500/20 bg-accent-50/20 dark:bg-accent-500/5 flex items-center justify-between gap-4 pl-6">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 rounded-xl shrink-0">
-                <Star size={18} />
+              <div className="p-2 bg-accent-500 text-white rounded-xl shrink-0 shadow-xs">
+                <Star size={18} className="fill-current" />
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 dark:text-zinc-100 text-base sm:text-lg">
@@ -982,8 +988,8 @@ function AwardsSection() {
               >
                 {/* Role / Title Column */}
                 <div className="flex items-center gap-2.5 sm:w-56 lg:w-64 shrink-0">
-                  <div className="w-6 h-6 rounded-md bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-200">
-                    <Star size={13} />
+                  <div className="w-6 h-6 rounded-md bg-accent-500 text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-200 shadow-xs">
+                    <Star size={13} className="fill-current" />
                   </div>
                   <h4 className="font-semibold text-sm text-slate-900 dark:text-zinc-100 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">
                     {service.title}
