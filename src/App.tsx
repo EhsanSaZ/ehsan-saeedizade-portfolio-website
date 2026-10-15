@@ -195,13 +195,13 @@ export default function App() {
             className="w-10 h-10 rounded-lg object-cover border border-slate-200 dark:border-zinc-800"
             referrerPolicy="no-referrer"
           />
-          <span className="text-slate-900 dark:text-zinc-100 font-bold tracking-tight">{personalInfo.name}</span>
+          <span className="text-base font-bold tracking-tight text-slate-900 dark:text-zinc-100">{personalInfo.name}</span>
         </div>
         <div className="flex items-center gap-2">
           <ThemeToggle isDarkMode={isDarkMode} toggle={() => setIsDarkMode(!isDarkMode)} />
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-2 text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
+            className="p-2 text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -217,14 +217,14 @@ export default function App() {
             exit={{ opacity: 0, y: -20 }}
             className="lg:hidden fixed inset-0 z-[90] bg-white/65 dark:bg-black/75 backdrop-blur-sm pt-20 px-6 pb-6 flex flex-col overflow-y-auto transition-colors duration-300 pointer-events-auto"
           >
-            <nav className="flex flex-col gap-4 mb-8">
+            <nav className="flex flex-col gap-3 mb-8">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as TabType)}
-                  className={`flex items-center gap-4 p-4 rounded-2xl text-lg font-medium transition-all ${activeTab === tab.id
-                    ? 'bg-accent-50 text-accent-600 border border-accent-200 dark:bg-accent-500/10 dark:text-accent-500 dark:border-accent-500/20'
-                    : 'text-slate-600 hover:text-slate-900 dark:text-zinc-500 dark:hover:text-zinc-200'
+                  className={`flex items-center gap-3.5 p-3.5 rounded-2xl text-base font-medium transition-all cursor-pointer ${activeTab === tab.id
+                    ? 'bg-accent-50 text-accent-600 border border-accent-200 dark:bg-accent-500/10 dark:text-accent-500 dark:border-accent-500/20 shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-zinc-200'
                     }`}
                 >
                   <tab.icon size={20} />
@@ -373,12 +373,12 @@ function SidebarSocialLink({ href, icon: Icon, title }: { href: string; icon: an
 
 function SectionHeader({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
-    <div className="mb-12">
-      <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-zinc-100 tracking-tight mb-4 transition-colors duration-300">
+    <div className="mb-10 sm:mb-12">
+      <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-zinc-100 tracking-tight mb-3 transition-colors duration-300">
         {title}
       </h2>
-      {subtitle && <p className="text-slate-500 dark:text-zinc-500 text-lg max-w-2xl leading-relaxed transition-colors duration-300">{subtitle}</p>}
-      <div className="w-12 h-1 bg-accent-600 rounded-full mt-6"></div>
+      {subtitle && <p className="text-slate-600 dark:text-zinc-400 text-base sm:text-lg max-w-3xl leading-relaxed transition-colors duration-300">{subtitle}</p>}
+      <div className="w-12 h-1 bg-accent-600 rounded-full mt-4"></div>
     </div>
   );
 }
@@ -386,14 +386,10 @@ function SectionHeader({ title, subtitle }: { title: string; subtitle?: string }
 function AboutSection() {
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 dark:text-zinc-100 tracking-tight mb-4 transition-colors duration-300">
-          Who am I?
-        </h1>
-        <p className="text-xl text-slate-600 dark:text-zinc-400 leading-relaxed max-w-3xl font-light transition-colors duration-300">
-          A researcher and engineer focused on advancing AI/ML-driven solutions, distributed infrastructures, and scalable, privacy-preserving intelligent applications.
-        </p>
-      </div>
+      <SectionHeader
+        title="About Me"
+        subtitle="A researcher and engineer focused on advancing AI/ML-driven solutions, distributed infrastructures, and scalable, privacy-preserving intelligent applications."
+      />
 
       {personalInfo.showOpenToWorkBanner && <OpenToWorkBanner />}
 
@@ -401,14 +397,14 @@ function AboutSection() {
         {/* Left Column: Bio & Education */}
         <div className="lg:col-span-2 space-y-6">
           {/* Biography Card */}
-          <div className="bg-white dark:bg-zinc-900/30 p-8 rounded-3xl border border-slate-200 dark:border-zinc-800/50 shadow-sm transition-colors duration-300">
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-zinc-100 mb-6 flex items-center gap-3 transition-colors duration-300">
+          <div className="bg-white dark:bg-zinc-900/30 p-7 sm:p-8 rounded-3xl border border-slate-200 dark:border-zinc-800/50 shadow-sm transition-colors duration-300">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 mb-5 flex items-center gap-3 transition-colors duration-300">
               <div className="p-2 bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400 rounded-xl">
-                <BookMarked size={24} />
+                <BookMarked size={22} />
               </div>
               Biography
             </h3>
-            <div className="space-y-4 text-slate-600 dark:text-zinc-400 leading-relaxed text-justify font-light transition-colors duration-300">
+            <div className="space-y-4 text-slate-600 dark:text-zinc-300 leading-relaxed text-left text-[15px] sm:text-base font-normal transition-colors duration-300">
               <p>
                 I am a Ph.D. candidate and Graduate Research and Teaching Assistant, specializing in AI/ML-driven software systems and distributed infrastructures. My work focuses on federated learning, anomaly detection, and privacy-preserving machine learning across edge, cloud, and high-performance environments, with an emphasis on building scalable, production-grade systems.
               </p>
@@ -422,10 +418,10 @@ function AboutSection() {
           </div>
 
           {/* Education Card */}
-          <div className="bg-white dark:bg-zinc-900/30 p-8 rounded-3xl border border-slate-200 dark:border-zinc-800/50 shadow-sm transition-colors duration-300">
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-zinc-100 mb-8 flex items-center gap-3 transition-colors duration-300">
+          <div className="bg-white dark:bg-zinc-900/30 p-7 sm:p-8 rounded-3xl border border-slate-200 dark:border-zinc-800/50 shadow-sm transition-colors duration-300">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 mb-6 flex items-center gap-3 transition-colors duration-300">
               <div className="p-2 bg-teal-50 text-teal-600 dark:bg-teal-500/10 dark:text-teal-400 rounded-xl">
-                <GraduationCap size={24} />
+                <GraduationCap size={22} />
               </div>
               Education
             </h3>
@@ -438,20 +434,20 @@ function AboutSection() {
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                     <div>
                       <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-teal-500 ring-4 ring-teal-50 dark:ring-teal-500/10"></div>
-                      <h4 className="text-lg font-bold text-slate-900 dark:text-zinc-100 transition-colors duration-300">{edu.degree}</h4>
-                      <div className="text-blue-600 dark:text-blue-400 font-medium mt-1">{edu.institution}</div>
-                      <div className="flex items-center gap-2 text-slate-500 dark:text-zinc-500 text-sm mt-2 transition-colors duration-300">
+                      <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-zinc-100 transition-colors duration-300">{edu.degree}</h4>
+                      <div className="text-sm font-semibold text-accent-600 dark:text-accent-400 mt-0.5">{edu.institution}</div>
+                      <div className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 text-xs sm:text-sm mt-1 transition-colors duration-300">
                         <MapPin size={14} />
                         {edu.location}
                       </div>
                       {edu.description && (
-                        <p className="text-slate-600 dark:text-zinc-400 text-sm mt-3 font-light transition-colors duration-300">
+                        <p className="text-slate-600 dark:text-zinc-300 text-sm mt-2.5 leading-relaxed font-normal transition-colors duration-300">
                           {edu.description}
                         </p>
                       )}
                     </div>
                     <div className="shrink-0">
-                      <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-600 dark:bg-zinc-800 dark:text-zinc-300 text-xs font-semibold border border-slate-200 dark:border-zinc-700 transition-colors duration-300">
+                      <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 dark:bg-zinc-800 dark:text-zinc-300 text-xs font-semibold border border-slate-200 dark:border-zinc-700 transition-colors duration-300">
                         {edu.period.includes('now') ? 'Current' : 'Completed'}
                       </span>
                     </div>
@@ -465,24 +461,24 @@ function AboutSection() {
         {/* Right Column: Role & Interests */}
         <div className="space-y-6">
           {/* Current Role Card */}
-          <div className="bg-white dark:bg-zinc-900/30 p-8 rounded-3xl border border-slate-200 dark:border-zinc-800/50 shadow-sm transition-colors duration-300">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 mb-6 flex items-center gap-3 transition-colors duration-300">
+          <div className="bg-white dark:bg-zinc-900/30 p-7 sm:p-8 rounded-3xl border border-slate-200 dark:border-zinc-800/50 shadow-sm transition-colors duration-300">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 mb-5 flex items-center gap-3 transition-colors duration-300">
               <div className="p-2 bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400 rounded-xl">
                 <Award size={20} />
               </div>
               Current Role
             </h3>
             <div>
-              <h4 className="font-bold text-slate-900 dark:text-zinc-100 mb-2 transition-colors duration-300">Graduate Research and Teaching Assistant</h4>
-              <p className="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed font-light transition-colors duration-300">
+              <h4 className="font-bold text-base sm:text-lg text-slate-900 dark:text-zinc-100 mb-1.5 transition-colors duration-300">Graduate Research and Teaching Assistant</h4>
+              <p className="text-sm text-slate-600 dark:text-zinc-300 leading-relaxed font-normal transition-colors duration-300">
                 Driving research in AI/ML systems while mentoring the next generation of engineers.
               </p>
             </div>
           </div>
 
           {/* Research Interests Card */}
-          <div className="bg-white dark:bg-zinc-900/30 p-8 rounded-3xl border border-slate-200 dark:border-zinc-800/50 shadow-sm transition-colors duration-300">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 mb-6 flex items-center gap-3 transition-colors duration-300">
+          <div className="bg-white dark:bg-zinc-900/30 p-7 sm:p-8 rounded-3xl border border-slate-200 dark:border-zinc-800/50 shadow-sm transition-colors duration-300">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 mb-5 flex items-center gap-3 transition-colors duration-300">
               <div className="p-2 bg-green-50 text-green-600 dark:bg-green-500/10 dark:text-green-400 rounded-xl">
                 <Search size={20} />
               </div>
@@ -503,7 +499,7 @@ function AboutSection() {
                 "Large Language Models (LLMs)",
                 "MLOps and Scalable ML Systems"
               ].map((interest, idx) => (
-                <span key={idx} className="px-3 py-1.5 bg-slate-100 border border-slate-200 text-slate-700 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 rounded-lg text-xs font-medium transition-colors duration-300">
+                <span key={idx} className="px-2.5 py-1 bg-slate-100 border border-slate-200 text-slate-700 dark:bg-zinc-800/80 dark:border-zinc-700/60 dark:text-zinc-300 rounded-lg text-xs font-medium transition-colors duration-300">
                   {interest}
                 </span>
               ))}
@@ -528,7 +524,10 @@ function SkillsSection() {
 
   return (
     <div>
-      <SectionHeader title="Technical Skills" />
+      <SectionHeader
+        title="Technical Skills"
+        subtitle="Core competencies, frameworks, tools, and technical proficiencies."
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {skills.map((skillGroup, index) => (
           <motion.div
@@ -537,11 +536,11 @@ function SkillsSection() {
             viewport={{ once: true }}
             transition={{ delay: index * 0.05 }}
             key={index}
-            className="relative overflow-hidden bg-white dark:bg-zinc-900/40 p-8 rounded-[2rem] border border-accent-200 dark:border-accent-500/20 shadow-md transition-all group"
+            className="relative overflow-hidden bg-white dark:bg-zinc-900/40 p-7 rounded-3xl border border-accent-200 dark:border-accent-500/20 shadow-md transition-all group"
           >
             <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-accent-500 text-white rounded-2xl flex items-center justify-center transition-all duration-500">
+            <div className="flex items-center gap-3.5 mb-5">
+              <div className="w-11 h-11 bg-accent-500 text-white rounded-xl flex items-center justify-center transition-all duration-300 shadow-xs">
                 <SkillIcon name={skillGroup.icon} />
               </div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 transition-colors duration-300">{skillGroup.title}</h3>
@@ -550,7 +549,7 @@ function SkillsSection() {
               {parseSkills(skillGroup.skills).map((skill, idx) => (
                 <span
                   key={idx}
-                  className="px-2.5 py-0.5 bg-slate-200/60 text-slate-700 dark:bg-zinc-800/80 dark:text-zinc-300 rounded-md text-sm font-medium border border-transparent hover:border-slate-300 dark:hover:border-zinc-600 transition-colors duration-300"
+                  className="px-2.5 py-1 bg-slate-100 text-slate-700 dark:bg-zinc-800/80 dark:text-zinc-300 rounded-lg text-xs sm:text-[13px] font-medium border border-slate-200/60 dark:border-zinc-700/50 hover:border-accent-400 dark:hover:border-accent-500/50 transition-colors duration-200"
                 >
                   {skill}
                 </span>
@@ -565,20 +564,23 @@ function SkillsSection() {
 
 function SkillIcon({ name }: { name: string }) {
   switch (name) {
-    case 'code': return <Code size={24} />;
-    case 'layers': return <Layers size={24} />;
-    case 'settings': return <Settings size={24} />;
-    case 'database': return <Database size={24} />;
-    case 'monitor': return <Monitor size={24} />;
-    case 'server': return <Server size={24} />;
-    default: return <Code size={24} />;
+    case 'code': return <Code size={22} />;
+    case 'layers': return <Layers size={22} />;
+    case 'settings': return <Settings size={22} />;
+    case 'database': return <Database size={22} />;
+    case 'monitor': return <Monitor size={22} />;
+    case 'server': return <Server size={22} />;
+    default: return <Code size={22} />;
   }
 }
 
 function WorkSection() {
   return (
     <div>
-      <SectionHeader title="Work Experience" />
+      <SectionHeader
+        title="Work Experience"
+        subtitle="Professional journey in distributed systems, machine learning engineering, and scalable software systems."
+      />
       <div className="space-y-12">
         {workExperience.map((work, index) => (
           <motion.div
@@ -590,24 +592,24 @@ function WorkSection() {
             className="relative pl-12 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-px before:bg-slate-200 dark:before:bg-zinc-800"
           >
             <div className="absolute left-0 top-0 w-3 h-3 -translate-x-1/2 rounded-full bg-accent-600 ring-8 ring-accent-100 dark:ring-accent-600/10"></div>
-            <div className="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-4">
+            <div className="flex flex-col md:flex-row md:items-start justify-between mb-5 gap-3 sm:gap-4">
               <div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-zinc-100 mb-1 transition-colors duration-300">{work.title}</h3>
-                <div className="text-accent-600 dark:text-accent-500 font-semibold tracking-wide uppercase text-xs transition-colors duration-300">{work.institution}</div>
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-zinc-100 mb-1 transition-colors duration-300">{work.title}</h3>
+                <div className="text-sm font-semibold text-accent-600 dark:text-accent-400 transition-colors duration-300">{work.institution}</div>
               </div>
-              <div className="flex flex-col md:items-end gap-2">
-                <span className="text-xs font-mono bg-slate-100 border border-slate-200 text-slate-600 dark:bg-zinc-900 dark:border-zinc-800 px-3 py-1 rounded-full dark:text-zinc-400 transition-colors duration-300">{work.date}</span>
-                <span className="text-xs text-slate-500 dark:text-zinc-600 flex items-center gap-1 transition-colors duration-300">
-                  <MapPin size={12} />
+              <div className="flex flex-col md:items-end gap-1.5 shrink-0">
+                <span className="text-xs font-mono font-medium bg-slate-100 border border-slate-200 text-slate-600 dark:bg-zinc-900 dark:border-zinc-800 px-3 py-1 rounded-full dark:text-zinc-400 transition-colors duration-300">{work.date}</span>
+                <span className="text-xs text-slate-500 dark:text-zinc-400 flex items-center gap-1 transition-colors duration-300">
+                  <MapPin size={13} />
                   {work.location}
                 </span>
               </div>
             </div>
-            <ul className="space-y-1">
+            <ul className="space-y-2">
               {work.responsibilities.map((resp, idx) => (
-                <li key={idx} className="text-slate-600 dark:text-zinc-400 flex items-start gap-3 text-base font-light leading-relaxed transition-colors duration-300">
-                  <div className="mt-2 w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-zinc-700 shrink-0 transition-colors duration-300"></div>
-                  {resp}
+                <li key={idx} className="text-slate-600 dark:text-zinc-300 flex items-start gap-3 text-sm sm:text-[15px] font-normal leading-relaxed transition-colors duration-300">
+                  <div className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-500/70 dark:bg-accent-400/70 shrink-0 transition-colors duration-300"></div>
+                  <span>{resp}</span>
                 </li>
               ))}
             </ul>
@@ -621,8 +623,11 @@ function WorkSection() {
 function TeachingSection() {
   return (
     <div>
-      <SectionHeader title="Teaching" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
+      <SectionHeader
+        title="Teaching"
+        subtitle="Instruction, lab leadership, curriculum development, and student mentorship."
+      />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
         {teachingExperience.map((exp, index) => (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -630,27 +635,27 @@ function TeachingSection() {
             viewport={{ once: true }}
             transition={{ delay: index * 0.04 }}
             key={index}
-            className="relative overflow-hidden bg-white dark:bg-zinc-900/30 p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-zinc-800/60 hover:border-accent-300 dark:hover:border-accent-500/30 hover:shadow-md flex flex-col shadow-xs transition-all duration-300 group"
+            className="relative overflow-hidden bg-white dark:bg-zinc-900/30 p-6 rounded-3xl border border-slate-200/80 dark:border-zinc-800/60 hover:border-accent-300 dark:hover:border-accent-500/30 hover:shadow-md flex flex-col shadow-xs transition-all duration-300 group"
           >
             <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
-            <div className="flex justify-between items-start gap-2.5 mb-2.5">
-              <div className="w-8 h-8 flex items-center justify-center bg-accent-500 text-white rounded-lg shrink-0 group-hover:scale-105 transition-transform duration-300 shadow-xs">
-                <BookOpen size={16} />
+            <div className="flex justify-between items-start gap-3 mb-3.5">
+              <div className="w-9 h-9 flex items-center justify-center bg-accent-500 text-white rounded-xl shrink-0 group-hover:scale-105 transition-transform duration-300 shadow-xs">
+                <BookOpen size={18} />
               </div>
-              <span className="text-[10px] font-mono uppercase tracking-wider bg-accent-50 text-accent-600 border border-accent-200 dark:bg-accent-500/10 dark:text-accent-400 px-2 py-0.5 rounded-md dark:border-accent-500/20 transition-colors duration-300 text-right leading-tight max-w-[70%]">
+              <span className="text-xs font-mono font-medium bg-accent-50 text-accent-600 border border-accent-200 dark:bg-accent-500/10 dark:text-accent-400 px-2.5 py-1 rounded-md dark:border-accent-500/20 transition-colors duration-300 text-right leading-tight">
                 {exp.period}
               </span>
             </div>
-            <h3 className="text-[15px] sm:text-base font-bold text-slate-900 dark:text-zinc-100 mb-1 leading-snug transition-colors duration-300 group-hover:text-accent-600 dark:group-hover:text-accent-400">
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-zinc-100 mb-1 leading-snug transition-colors duration-300 group-hover:text-accent-600 dark:group-hover:text-accent-400">
               {exp.course}
             </h3>
-            <div className="text-xs text-slate-600 dark:text-zinc-400 font-medium mb-0.5 transition-colors duration-300">
+            <div className="text-sm font-semibold text-accent-600 dark:text-accent-400 mb-0.5 transition-colors duration-300">
               {exp.role}
             </div>
-            <div className="text-[11px] text-slate-500 dark:text-zinc-500 mb-3 transition-colors duration-300">
+            <div className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mb-4 transition-colors duration-300">
               {exp.institution}
             </div>
-            <div className="mt-auto pt-2.5 border-t border-slate-100 dark:border-zinc-800/60 text-xs text-slate-500 dark:text-zinc-400 italic leading-snug transition-colors duration-300">
+            <div className="mt-auto pt-3 border-t border-slate-100 dark:border-zinc-800/60 text-sm text-slate-600 dark:text-zinc-300 leading-relaxed font-normal transition-colors duration-300">
               {exp.responsibilities}
             </div>
           </motion.div>
@@ -663,7 +668,10 @@ function TeachingSection() {
 function PublicationsSection() {
   return (
     <div>
-      <SectionHeader title="Publications" />
+      <SectionHeader
+        title="Publications"
+        subtitle="Peer-reviewed conference proceedings, journal papers, and research contributions."
+      />
       <div className="space-y-4">
         {publications.map((pub, index) => (
           <motion.div
@@ -671,18 +679,18 @@ function PublicationsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             key={index}
-            className="relative overflow-hidden bg-white dark:bg-zinc-900/40 p-6 rounded-3xl border border-slate-200 dark:border-zinc-700 shadow-md transition-all group"
+            className="relative overflow-hidden bg-white dark:bg-zinc-900/40 p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-zinc-700 shadow-md transition-all group"
           >
             <div className="absolute top-0 left-0 w-1 h-full bg-accent-500 transition-colors duration-300"></div>
             {/* Top Row */}
             <div className="flex flex-wrap justify-between items-start gap-4 mb-3">
               <div className="flex items-center gap-3">
                 {pub.type && (
-                  <span className="px-3 py-1 text-xs font-medium bg-slate-200/60 text-slate-700 dark:bg-zinc-800 dark:text-zinc-300 rounded-full border border-slate-200 dark:border-zinc-700">
+                  <span className="px-2.5 py-0.5 text-xs font-semibold bg-slate-100 text-slate-700 dark:bg-zinc-800 dark:text-zinc-300 rounded-full border border-slate-200 dark:border-zinc-700">
                     {pub.type}
                   </span>
                 )}
-                <div className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-zinc-500">
+                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-mono text-slate-500 dark:text-zinc-400">
                   <Calendar size={14} />
                   {pub.year}
                 </div>
@@ -693,7 +701,7 @@ function PublicationsSection() {
                   href={pub.doiUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-zinc-300 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 px-4 py-1.5 rounded-lg hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors"
+                  className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-700 dark:text-zinc-200 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 px-3.5 py-1.5 rounded-xl hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors shadow-xs"
                 >
                   <ExternalLink size={14} />
                   View Paper
@@ -702,12 +710,12 @@ function PublicationsSection() {
             </div>
 
             {/* Title */}
-            <h3 className="text-xl font-bold text-accent-600 dark:text-accent-500 leading-snug mb-2 transition-colors">
+            <h3 className="text-lg sm:text-xl font-bold text-accent-600 dark:text-accent-500 leading-snug mb-2 transition-colors">
               {pub.title}
             </h3>
 
             {/* Authors & Journal */}
-            <div className="space-y-1.5 mb-4">
+            <div className="space-y-1.5 mb-3.5">
               <div className="flex items-start gap-2 text-slate-600 dark:text-zinc-400 text-sm">
                 <Users size={16} className="shrink-0 mt-0.5" />
                 <span dangerouslySetInnerHTML={{ __html: pub.authors.replace('E. Saeedizade', '<span class="text-slate-900 dark:text-zinc-100 font-semibold">E. Saeedizade</span>') }} />
@@ -720,7 +728,7 @@ function PublicationsSection() {
 
             {/* Description */}
             {pub.description && (
-              <p className="text-slate-600 dark:text-zinc-400 text-sm leading-relaxed mb-4">
+              <p className="text-slate-600 dark:text-zinc-300 text-sm sm:text-[15px] leading-relaxed font-normal mb-4">
                 {pub.description}
               </p>
             )}
@@ -729,7 +737,7 @@ function PublicationsSection() {
             {pub.tags && pub.tags.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {pub.tags.map((tag, idx) => (
-                  <span key={idx} className="px-2.5 py-1 bg-slate-200/60 text-slate-600 dark:bg-zinc-800/80 dark:text-zinc-400 rounded-md text-xs font-medium">
+                  <span key={idx} className="px-2.5 py-1 bg-slate-100 text-slate-700 dark:bg-zinc-800/80 dark:text-zinc-300 rounded-lg text-xs font-medium border border-slate-200/60 dark:border-zinc-700/50">
                     {tag}
                   </span>
                 ))}
@@ -747,22 +755,25 @@ function CertificatesSection() {
 
   return (
     <div>
-      <SectionHeader title="Certificates & Courses" />
+      <SectionHeader
+        title="Certificates & Courses"
+        subtitle="Professional certifications, specializations, and verified technical credentials."
+      />
       <div className="space-y-4">
         {certificates.map((category, index) => {
           const isOpen = openCategoryIndex === index;
           return (
-            <div key={index} className="bg-white dark:bg-zinc-900/30 rounded-[2rem] border border-slate-200 dark:border-zinc-800/50 overflow-hidden transition-colors duration-300">
+            <div key={index} className="bg-white dark:bg-zinc-900/30 rounded-3xl border border-slate-200 dark:border-zinc-800/50 overflow-hidden transition-colors duration-300 shadow-xs">
               <button
                 onClick={() => setOpenCategoryIndex(isOpen ? -1 : index)}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-colors duration-300"
+                className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-colors duration-300 cursor-pointer"
               >
                 <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 flex items-center gap-3">
                   <div className="p-2 bg-accent-50 text-accent-600 dark:bg-accent-500/10 dark:text-accent-400 rounded-xl">
                     <Award size={20} />
                   </div>
-                  {category.category}
-                  <span className="text-sm font-normal text-slate-500 dark:text-zinc-500 bg-slate-100 dark:bg-zinc-800 px-2.5 py-0.5 rounded-full ml-2">
+                  <span>{category.category}</span>
+                  <span className="text-xs font-semibold text-slate-600 dark:text-zinc-400 bg-slate-100 dark:bg-zinc-800 px-2.5 py-0.5 rounded-full ml-2 border border-slate-200/60 dark:border-zinc-700/60">
                     {category.items.length}
                   </span>
                 </h3>
@@ -785,18 +796,18 @@ function CertificatesSection() {
                         {category.items.map((cert, certIndex) => (
                           <div
                             key={certIndex}
-                            className="bg-slate-50 dark:bg-zinc-800/30 p-5 rounded-2xl border border-slate-200/50 dark:border-zinc-700/50 hover:border-accent-300 dark:hover:border-accent-500/30 hover:shadow-sm transition-all duration-300 flex flex-col group"
+                            className="bg-slate-50/70 dark:bg-zinc-800/30 p-5 rounded-2xl border border-slate-200/60 dark:border-zinc-700/50 hover:border-accent-300 dark:hover:border-accent-500/30 hover:shadow-sm transition-all duration-300 flex flex-col group"
                           >
-                            <h4 className="font-bold text-slate-900 dark:text-zinc-100 mb-1 line-clamp-2 transition-colors duration-300">{cert.title}</h4>
-                            <div className="text-sm text-slate-600 dark:text-zinc-500 mb-3 transition-colors duration-300">{cert.institution}</div>
+                            <h4 className="text-base font-bold text-slate-900 dark:text-zinc-100 mb-1 line-clamp-2 transition-colors duration-300">{cert.title}</h4>
+                            <div className="text-sm font-medium text-slate-600 dark:text-zinc-400 mb-3 transition-colors duration-300">{cert.institution}</div>
                             <div className="flex items-center justify-between mt-auto pt-3 border-t border-slate-200/50 dark:border-zinc-700/50">
-                              <span className="text-[10px] font-mono text-slate-500 dark:text-zinc-600 uppercase tracking-widest transition-colors duration-300">{cert.date}</span>
+                              <span className="text-xs font-mono font-medium text-slate-500 dark:text-zinc-400 uppercase tracking-wider transition-colors duration-300">{cert.date}</span>
                               {cert.url && (
                                 <a
                                   href={cert.url}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-xs font-bold text-accent-600 dark:text-accent-500 hover:text-accent-700 dark:hover:text-accent-400 flex items-center gap-1.5 transition-colors duration-300"
+                                  className="text-xs font-bold text-accent-600 dark:text-accent-400 hover:text-accent-700 dark:hover:text-accent-300 flex items-center gap-1.5 transition-colors duration-300"
                                 >
                                   Verify
                                   <ExternalLink size={12} />
@@ -834,10 +845,10 @@ function AwardsSection() {
         />
 
         {/* Compact Filter Pills */}
-        <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-zinc-800/60 rounded-xl border border-slate-200/60 dark:border-zinc-700/60 w-fit -mt-6 mb-8">
+        <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-zinc-800/60 rounded-xl border border-slate-200/60 dark:border-zinc-700/60 w-fit -mt-4 mb-8">
           <button
             onClick={() => setFilter('all')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer flex items-center gap-2 ${
               filter === 'all'
                 ? 'bg-white dark:bg-zinc-900 text-accent-600 dark:text-accent-400 font-semibold shadow-sm border border-slate-200/50 dark:border-zinc-700/50'
                 : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
@@ -845,7 +856,7 @@ function AwardsSection() {
           >
             <span>All</span>
             <span
-              className={`px-1.5 py-0.5 rounded-full text-[10px] font-mono leading-none transition-colors ${
+              className={`px-2 py-0.5 rounded-full text-xs font-mono font-medium leading-none transition-colors ${
                 filter === 'all'
                   ? 'bg-accent-50 dark:bg-accent-500/15 text-accent-600 dark:text-accent-400'
                   : 'bg-slate-200/70 dark:bg-zinc-700/60 text-slate-500 dark:text-zinc-400'
@@ -856,16 +867,16 @@ function AwardsSection() {
           </button>
           <button
             onClick={() => setFilter('awards')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer flex items-center gap-2 ${
               filter === 'awards'
                 ? 'bg-white dark:bg-zinc-900 text-accent-600 dark:text-accent-400 font-semibold shadow-sm border border-slate-200/50 dark:border-zinc-700/50'
                 : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
             }`}
           >
-            <Trophy size={13} />
+            <Trophy size={14} />
             <span>Awards</span>
             <span
-              className={`px-1.5 py-0.5 rounded-full text-[10px] font-mono leading-none transition-colors ${
+              className={`px-2 py-0.5 rounded-full text-xs font-mono font-medium leading-none transition-colors ${
                 filter === 'awards'
                   ? 'bg-accent-50 dark:bg-accent-500/15 text-accent-600 dark:text-accent-400'
                   : 'bg-slate-200/70 dark:bg-zinc-700/60 text-slate-500 dark:text-zinc-400'
@@ -876,16 +887,16 @@ function AwardsSection() {
           </button>
           <button
             onClick={() => setFilter('services')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer flex items-center gap-2 ${
               filter === 'services'
                 ? 'bg-white dark:bg-zinc-900 text-accent-600 dark:text-accent-400 font-semibold shadow-sm border border-slate-200/50 dark:border-zinc-700/50'
                 : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
             }`}
           >
-            <Star size={13} className="fill-current" />
+            <Star size={14} className="fill-current" />
             <span>Services</span>
             <span
-              className={`px-1.5 py-0.5 rounded-full text-[10px] font-mono leading-none transition-colors ${
+              className={`px-2 py-0.5 rounded-full text-xs font-mono font-medium leading-none transition-colors ${
                 filter === 'services'
                   ? 'bg-accent-50 dark:bg-accent-500/15 text-accent-600 dark:text-accent-400'
                   : 'bg-slate-200/70 dark:bg-zinc-700/60 text-slate-500 dark:text-zinc-400'
@@ -918,7 +929,7 @@ function AwardsSection() {
                 <h3 className="font-bold text-slate-900 dark:text-zinc-100 text-base sm:text-lg">
                   Honors & Awards
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-zinc-400 hidden sm:block">
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 hidden sm:block">
                   Academic grants, scholarships, and competition placements
                 </p>
               </div>
@@ -930,18 +941,18 @@ function AwardsSection() {
             {awards.map((award, index) => (
               <div
                 key={index}
-                className="group relative px-4 sm:px-5 py-3 flex items-start sm:items-center justify-between gap-3 sm:gap-4 hover:bg-accent-50/50 dark:hover:bg-accent-500/5 transition-colors duration-150"
+                className="group relative px-4 sm:px-5 py-3.5 flex items-start sm:items-center justify-between gap-3 sm:gap-4 hover:bg-accent-50/50 dark:hover:bg-accent-500/5 transition-colors duration-150"
               >
                 <div className="flex items-start gap-3 flex-1 min-w-0">
                   <div className="w-6 h-6 rounded-md bg-accent-500 text-white flex items-center justify-center shrink-0 mt-0.5 sm:mt-0 group-hover:scale-110 transition-transform duration-200 shadow-xs">
                     <Trophy size={13} />
                   </div>
-                  <p className="text-sm text-slate-700 dark:text-zinc-300 leading-relaxed font-normal group-hover:text-slate-900 dark:group-hover:text-zinc-100 transition-colors">
+                  <p className="text-sm sm:text-[15px] text-slate-700 dark:text-zinc-200 leading-relaxed font-normal group-hover:text-slate-900 dark:group-hover:text-zinc-100 transition-colors">
                     {award.description}
                   </p>
                 </div>
                 {award.year && (
-                  <span className="shrink-0 text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-accent-50 text-accent-600 dark:bg-accent-500/10 dark:text-accent-400 border border-accent-300/50 dark:border-accent-500/20 group-hover:border-accent-400 dark:group-hover:border-accent-500/40 transition-colors">
+                  <span className="shrink-0 text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-accent-50 text-accent-600 dark:bg-accent-500/10 dark:text-accent-400 border border-accent-300/50 dark:border-accent-500/20 group-hover:border-accent-400 dark:group-hover:border-accent-500/40 transition-colors">
                     {award.year}
                   </span>
                 )}
@@ -972,7 +983,7 @@ function AwardsSection() {
                 <h3 className="font-bold text-slate-900 dark:text-zinc-100 text-base sm:text-lg">
                   Academic & Professional Services
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-zinc-400 hidden sm:block">
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 hidden sm:block">
                   Peer reviews, program committees, mentoring, and conference organization
                 </p>
               </div>
@@ -984,21 +995,21 @@ function AwardsSection() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="group relative px-4 sm:px-5 py-3 flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-6 hover:bg-accent-50/50 dark:hover:bg-accent-500/5 transition-colors duration-150"
+                className="group relative px-4 sm:px-5 py-3.5 flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-6 hover:bg-accent-50/50 dark:hover:bg-accent-500/5 transition-colors duration-150"
               >
                 {/* Role / Title Column */}
                 <div className="flex items-center gap-2.5 sm:w-56 lg:w-64 shrink-0">
                   <div className="w-6 h-6 rounded-md bg-accent-500 text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-200 shadow-xs">
                     <Star size={13} className="fill-current" />
                   </div>
-                  <h4 className="font-semibold text-sm text-slate-900 dark:text-zinc-100 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">
+                  <h4 className="font-semibold text-sm sm:text-base text-slate-900 dark:text-zinc-100 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">
                     {service.title}
                   </h4>
                 </div>
 
                 {/* Description Column & Link */}
                 <div className="flex-1 flex items-start justify-between gap-3 pl-8 sm:pl-0">
-                  <p className="text-sm text-slate-600 dark:text-zinc-400 font-light leading-relaxed">
+                  <p className="text-sm sm:text-[15px] text-slate-600 dark:text-zinc-300 font-normal leading-relaxed">
                     {service.url ? (
                       <a
                         href={service.url}
@@ -1019,7 +1030,7 @@ function AwardsSection() {
                       href={service.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-slate-400 hover:text-accent-600 dark:hover:text-accent-400 p-1 rounded-lg hover:bg-accent-50 dark:hover:bg-accent-500/10 transition-all duration-200 shrink-0 self-center hidden sm:flex items-center gap-1 text-xs font-medium"
+                      className="text-slate-400 hover:text-accent-600 dark:hover:text-accent-400 p-1.5 rounded-lg hover:bg-accent-50 dark:hover:bg-accent-500/10 transition-all duration-200 shrink-0 self-center hidden sm:flex items-center gap-1 text-xs font-semibold"
                       title={`Visit ${service.title}`}
                       aria-label={`Visit link for ${service.title}`}
                     >
@@ -1057,7 +1068,10 @@ function ThemesSection({
 
   return (
     <div className="space-y-8">
-      <SectionHeader title="Choose your vibe ✨" />
+      <SectionHeader
+        title="Choose your vibe ✨"
+        subtitle="Personalize the visual atmosphere with custom holiday and seasonal themes."
+      />
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {themes.map((theme) => (
           <button
@@ -1066,7 +1080,7 @@ function ThemesSection({
               setActiveTheme(theme.id);
               setThemeKey(Date.now());
             }}
-            className={`p-6 min-h-[140px] flex flex-col items-center justify-center gap-3 rounded-2xl border-2 transition-all duration-300 ${activeTheme === theme.id
+            className={`p-6 min-h-[140px] flex flex-col items-center justify-center gap-3 rounded-2xl border-2 transition-all duration-300 cursor-pointer ${activeTheme === theme.id
               ? 'border-accent-500 bg-accent-50 dark:bg-accent-500/10 text-accent-600 dark:text-accent-500 shadow-lg shadow-accent-500/10'
               : 'border-slate-200 dark:border-zinc-800/50 bg-white dark:bg-zinc-900/30 text-slate-600 dark:text-zinc-400 hover:border-slate-300 dark:hover:border-zinc-700 hover:bg-slate-50 dark:hover:bg-zinc-800/50'
               }`}

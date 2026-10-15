@@ -31,8 +31,8 @@ export default function OpenToWorkBanner() {
         </span>
       </div>
 
-      {/* Main Narrative - Mobile kept at text-sm, Large screen reversed back to sm:text-sm */}
-      <div className="space-y-2.5 text-sm sm:text-sm text-slate-700 dark:text-zinc-200 leading-relaxed font-light transition-colors duration-300">
+      {/* Main Narrative */}
+      <div className="space-y-2.5 text-sm sm:text-[15px] text-slate-700 dark:text-zinc-200 leading-relaxed font-normal transition-colors duration-300">
         <p>
           I am actively seeking <strong className="font-semibold text-slate-900 dark:text-zinc-100">full-time and internship opportunities</strong> in{' '} engineering and research roles, including{' '}
           <strong className="font-semibold text-slate-900 dark:text-zinc-100">AI/ML Engineering</strong>,{' '}
