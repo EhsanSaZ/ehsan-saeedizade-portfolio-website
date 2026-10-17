@@ -791,28 +791,56 @@ function CertificatesSection() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    <div className="p-6 pt-0 border-t border-slate-100 dark:border-zinc-800/50">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div className="border-t border-slate-100 dark:border-zinc-800/50">
+                      <div className="divide-y divide-slate-100 dark:divide-zinc-800/60">
                         {category.items.map((cert, certIndex) => (
                           <div
                             key={certIndex}
-                            className="bg-slate-50/70 dark:bg-zinc-800/30 p-5 rounded-2xl border border-slate-200/60 dark:border-zinc-700/50 hover:border-accent-300 dark:hover:border-accent-500/30 hover:shadow-sm transition-all duration-300 flex flex-col group"
+                            className="group relative px-6 py-3.5 flex items-start gap-3 hover:bg-accent-50/50 dark:hover:bg-accent-500/5 transition-colors duration-150"
                           >
-                            <h4 className="text-base font-bold text-slate-900 dark:text-zinc-100 mb-1 line-clamp-2 transition-colors duration-300">{cert.title}</h4>
-                            <div className="text-sm font-medium text-slate-600 dark:text-zinc-400 mb-3 transition-colors duration-300">{cert.institution}</div>
-                            <div className="flex items-center justify-between mt-auto pt-3 border-t border-slate-200/50 dark:border-zinc-700/50">
-                              <span className="text-xs font-mono font-medium text-slate-500 dark:text-zinc-400 uppercase tracking-wider transition-colors duration-300">{cert.date}</span>
-                              {cert.url && (
-                                <a
-                                  href={cert.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-xs font-bold text-accent-600 dark:text-accent-400 hover:text-accent-700 dark:hover:text-accent-300 flex items-center gap-1.5 transition-colors duration-300"
-                                >
-                                  Verify
-                                  <ExternalLink size={12} />
-                                </a>
-                              )}
+                            {/* Left icon badge */}
+                            <div className="w-6 h-6 rounded-md bg-accent-500 text-white flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-200 shadow-xs">
+                              <Award size={13} />
+                            </div>
+
+                            {/* Content */}
+                            <div className="flex-1 min-w-0">
+                              {/* First line: Title in bold */}
+                              <h4 className="text-sm sm:text-[15px] font-bold text-slate-900 dark:text-zinc-100 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors leading-snug">
+                                {cert.title}
+                              </h4>
+
+                              {/* Second line: Description, date, and link in next columns */}
+                              <div className="mt-1 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-4 text-xs sm:text-[13px]">
+                                {/* Description column */}
+                                <p className="text-slate-600 dark:text-zinc-400 leading-relaxed flex-1 min-w-0">
+                                  {cert.institution}
+                                </p>
+
+                                {/* Date & Link columns */}
+                                <div className="flex items-center gap-2.5 sm:gap-3 shrink-0 self-start sm:self-center">
+                                  {cert.date && (
+                                    <span className="shrink-0 text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-accent-50 text-accent-600 dark:bg-accent-500/10 dark:text-accent-400 border border-accent-300/50 dark:border-accent-500/20 group-hover:border-accent-400 dark:group-hover:border-accent-500/40 transition-colors">
+                                      {cert.date}
+                                    </span>
+                                  )}
+                                  {cert.url ? (
+                                    <a
+                                      href={cert.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1 text-xs font-semibold text-accent-600 dark:text-accent-400 hover:text-accent-700 dark:hover:text-accent-300 transition-colors group/link min-w-[55px] justify-end"
+                                      title={`Verify credential for ${cert.title}`}
+                                      aria-label={`Verify credential for ${cert.title}`}
+                                    >
+                                      <span className="hover:underline">Verify</span>
+                                      <ExternalLink size={11} className="shrink-0 group-hover/link:translate-x-0.5 transition-transform" />
+                                    </a>
+                                  ) : (
+                                    <span className="w-[55px] sm:inline hidden" />
+                                  )}
+                                </div>
+                              </div>
                             </div>
                           </div>
                         ))}
@@ -848,59 +876,53 @@ function AwardsSection() {
         <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-zinc-800/60 rounded-xl border border-slate-200/60 dark:border-zinc-700/60 w-fit -mt-4 mb-8">
           <button
             onClick={() => setFilter('all')}
-            className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer flex items-center gap-2 ${
-              filter === 'all'
-                ? 'bg-white dark:bg-zinc-900 text-accent-600 dark:text-accent-400 font-semibold shadow-sm border border-slate-200/50 dark:border-zinc-700/50'
-                : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
-            }`}
+            className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer flex items-center gap-2 ${filter === 'all'
+              ? 'bg-white dark:bg-zinc-900 text-accent-600 dark:text-accent-400 font-semibold shadow-sm border border-slate-200/50 dark:border-zinc-700/50'
+              : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
+              }`}
           >
             <span>All</span>
             <span
-              className={`px-2 py-0.5 rounded-full text-xs font-mono font-medium leading-none transition-colors ${
-                filter === 'all'
-                  ? 'bg-accent-50 dark:bg-accent-500/15 text-accent-600 dark:text-accent-400'
-                  : 'bg-slate-200/70 dark:bg-zinc-700/60 text-slate-500 dark:text-zinc-400'
-              }`}
+              className={`px-2 py-0.5 rounded-full text-xs font-mono font-medium leading-none transition-colors ${filter === 'all'
+                ? 'bg-accent-50 dark:bg-accent-500/15 text-accent-600 dark:text-accent-400'
+                : 'bg-slate-200/70 dark:bg-zinc-700/60 text-slate-500 dark:text-zinc-400'
+                }`}
             >
               {awards.length + services.length}
             </span>
           </button>
           <button
             onClick={() => setFilter('awards')}
-            className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer flex items-center gap-2 ${
-              filter === 'awards'
-                ? 'bg-white dark:bg-zinc-900 text-accent-600 dark:text-accent-400 font-semibold shadow-sm border border-slate-200/50 dark:border-zinc-700/50'
-                : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
-            }`}
+            className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer flex items-center gap-2 ${filter === 'awards'
+              ? 'bg-white dark:bg-zinc-900 text-accent-600 dark:text-accent-400 font-semibold shadow-sm border border-slate-200/50 dark:border-zinc-700/50'
+              : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
+              }`}
           >
             <Trophy size={14} />
             <span>Awards</span>
             <span
-              className={`px-2 py-0.5 rounded-full text-xs font-mono font-medium leading-none transition-colors ${
-                filter === 'awards'
-                  ? 'bg-accent-50 dark:bg-accent-500/15 text-accent-600 dark:text-accent-400'
-                  : 'bg-slate-200/70 dark:bg-zinc-700/60 text-slate-500 dark:text-zinc-400'
-              }`}
+              className={`px-2 py-0.5 rounded-full text-xs font-mono font-medium leading-none transition-colors ${filter === 'awards'
+                ? 'bg-accent-50 dark:bg-accent-500/15 text-accent-600 dark:text-accent-400'
+                : 'bg-slate-200/70 dark:bg-zinc-700/60 text-slate-500 dark:text-zinc-400'
+                }`}
             >
               {awards.length}
             </span>
           </button>
           <button
             onClick={() => setFilter('services')}
-            className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer flex items-center gap-2 ${
-              filter === 'services'
-                ? 'bg-white dark:bg-zinc-900 text-accent-600 dark:text-accent-400 font-semibold shadow-sm border border-slate-200/50 dark:border-zinc-700/50'
-                : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
-            }`}
+            className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer flex items-center gap-2 ${filter === 'services'
+              ? 'bg-white dark:bg-zinc-900 text-accent-600 dark:text-accent-400 font-semibold shadow-sm border border-slate-200/50 dark:border-zinc-700/50'
+              : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
+              }`}
           >
-            <Star size={14} className="fill-current" />
+            <Star size={14} />
             <span>Services</span>
             <span
-              className={`px-2 py-0.5 rounded-full text-xs font-mono font-medium leading-none transition-colors ${
-                filter === 'services'
-                  ? 'bg-accent-50 dark:bg-accent-500/15 text-accent-600 dark:text-accent-400'
-                  : 'bg-slate-200/70 dark:bg-zinc-700/60 text-slate-500 dark:text-zinc-400'
-              }`}
+              className={`px-2 py-0.5 rounded-full text-xs font-mono font-medium leading-none transition-colors ${filter === 'services'
+                ? 'bg-accent-50 dark:bg-accent-500/15 text-accent-600 dark:text-accent-400'
+                : 'bg-slate-200/70 dark:bg-zinc-700/60 text-slate-500 dark:text-zinc-400'
+                }`}
             >
               {services.length}
             </span>
@@ -922,7 +944,7 @@ function AwardsSection() {
           {/* Section Panel Header */}
           <div className="px-5 py-3.5 sm:px-6 sm:py-4 border-b border-accent-300/40 dark:border-accent-500/20 bg-accent-50/20 dark:bg-accent-500/5 flex items-center justify-between gap-4 pl-6">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-accent-500 text-white rounded-xl shrink-0 shadow-xs">
+              <div className="p-2 bg-accent-50 text-accent-600 dark:bg-accent-500/10 dark:text-accent-400 rounded-xl shrink-0">
                 <Trophy size={18} />
               </div>
               <div>
@@ -976,8 +998,8 @@ function AwardsSection() {
           {/* Section Panel Header */}
           <div className="px-5 py-3.5 sm:px-6 sm:py-4 border-b border-accent-300/40 dark:border-accent-500/20 bg-accent-50/20 dark:bg-accent-500/5 flex items-center justify-between gap-4 pl-6">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-accent-500 text-white rounded-xl shrink-0 shadow-xs">
-                <Star size={18} className="fill-current" />
+              <div className="p-2 bg-accent-50 text-accent-600 dark:bg-accent-500/10 dark:text-accent-400 rounded-xl shrink-0">
+                <Star size={18} />
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 dark:text-zinc-100 text-base sm:text-lg">
@@ -1000,7 +1022,7 @@ function AwardsSection() {
                 {/* Role / Title Column */}
                 <div className="flex items-center gap-2.5 sm:w-56 lg:w-64 shrink-0">
                   <div className="w-6 h-6 rounded-md bg-accent-500 text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-200 shadow-xs">
-                    <Star size={13} className="fill-current" />
+                    <Star size={13} />
                   </div>
                   <h4 className="font-semibold text-sm sm:text-base text-slate-900 dark:text-zinc-100 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">
                     {service.title}
