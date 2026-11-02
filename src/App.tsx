@@ -388,7 +388,7 @@ function AboutSection() {
     <div className="space-y-8">
       <SectionHeader
         title="About Me"
-        subtitle="A researcher and engineer focused on advancing AI/ML-driven solutions, distributed infrastructures, and scalable, privacy-preserving intelligent applications."
+        subtitle="A researcher and engineer focused on advancing scalable high-performance software systems and AI/ML solutions, distributed infrastructures, and privacy-preserving intelligent applications."
       />
 
       {personalInfo.showOpenToWorkBanner && <OpenToWorkBanner />}
