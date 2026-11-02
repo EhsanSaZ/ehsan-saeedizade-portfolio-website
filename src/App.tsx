@@ -44,7 +44,8 @@ import {
   Ghost,
   Clover,
   Drumstick,
-  TreePine
+  TreePine,
+  PartyPopper
 } from 'lucide-react';
 import {
   personalInfo,
@@ -91,11 +92,22 @@ function isChristmasSeason(date: Date): boolean {
   return date.getMonth() === 11 && (date.getDate() === 23 || date.getDate() === 24 || date.getDate() === 25);
 }
 
+// Helper to determine if current date falls on New Year's Eve (Dec 31) or New Year's Day (Jan 1)
+function isNewYearSeason(date: Date): boolean {
+  return (
+    (date.getMonth() === 11 && date.getDate() === 31) ||
+    (date.getMonth() === 0 && date.getDate() === 1)
+  );
+}
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('about');
   const [activeTheme, setActiveTheme] = useState(() => {
     const today = new Date();
-    // Month is 0-indexed, so 2 is March, 6 is July, 9 is October, 10 is November, 11 is December
+    // Month is 0-indexed, so 0 is January, 2 is March, 6 is July, 9 is October, 10 is November, 11 is December
+    if (isNewYearSeason(today)) {
+      return 'newyear';
+    }
     if (today.getMonth() === 2 && (today.getDate() === 16 || today.getDate() === 17)) {
       return 'stpatricks';
     }
@@ -133,6 +145,9 @@ export default function App() {
     if (today.getMonth() === 9 && (today.getDate() === 31 || today.getDate() === 30)) {
       return true;
     }
+    if (isNewYearSeason(today)) {
+      return true;
+    }
     const hour = today.getHours();
     return hour >= 19 || hour < 7;
   });
@@ -148,7 +163,7 @@ export default function App() {
 
   // Force dark mode when switching to themes, reset on normal
   useEffect(() => {
-    if (activeTheme === 'july4th' || activeTheme === 'halloween' || activeTheme === 'thanksgiving' || activeTheme === 'christmas') {
+    if (activeTheme === 'july4th' || activeTheme === 'halloween' || activeTheme === 'thanksgiving' || activeTheme === 'christmas' || activeTheme === 'newyear') {
       setIsDarkMode(true);
     }
     else if (activeTheme === 'stpatricks') {
@@ -1086,6 +1101,7 @@ function ThemesSection({
     { id: 'halloween', name: 'Halloween', icon: <Ghost size={24} /> },
     { id: 'thanksgiving', name: 'Thanksgiving', icon: <Drumstick size={24} /> },
     { id: 'christmas', name: 'Christmas', icon: <TreePine size={24} /> },
+    { id: 'newyear', name: 'New Year', icon: <PartyPopper size={24} /> },
   ];
 
   return (

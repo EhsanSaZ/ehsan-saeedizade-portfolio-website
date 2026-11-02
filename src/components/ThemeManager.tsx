@@ -6,6 +6,7 @@ const HalloweenTheme = lazy(() => import('./HalloweenTheme'));
 const StPatricksTheme = lazy(() => import('./StPatricksTheme'));
 const ThanksgivingTheme = lazy(() => import('./ThanksgivingTheme'));
 const ChristmasTheme = lazy(() => import('./ChristmasTheme'));
+const NewYearTheme = lazy(() => import('./NewYearTheme'));
 
 interface ThemeManagerProps {
   activeTheme: string;
@@ -22,6 +23,7 @@ export default function ThemeManager({ activeTheme, themeKey }: ThemeManagerProp
       {activeTheme === 'stpatricks' && <StPatricksTheme key={`stpatricks-${themeKey}`} />}
       {activeTheme === 'thanksgiving' && <ThanksgivingTheme key={`thanksgiving-${themeKey}`} />}
       {activeTheme === 'christmas' && <ChristmasTheme key={`christmas-${themeKey}`} />}
+      {activeTheme === 'newyear' && <NewYearTheme key={`newyear-${themeKey}`} />}
       {/* Future themes can be added here */}
     </Suspense>
   );
